@@ -1,0 +1,25 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/labayh-content-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: 'WordPress application passwords, advertised by the API index at https://labayh.net/wp-json/
+    (authorization endpoint: https://labayh.net/wp-admin/authorize-application.php). Required
+    for every write operation; the documented read operations need no credentials.'
+  sources:
+  - openapi/labayh-content-openapi.yml
+- name: cookieNonce
+  type: apiKey
+  in: header
+  parameter: X-WP-Nonce
+  description: Cookie-authenticated first-party requests pass a nonce in the X-WP-Nonce header.
+  sources:
+  - openapi/labayh-content-openapi.yml
