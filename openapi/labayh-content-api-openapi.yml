@@ -1,0 +1,2949 @@
+openapi: 3.1.0
+info:
+  title: Labayh Consultants Content API
+  version: wp/v2
+  summary: Public read access to Labayh's consultant directory, therapeutic programs, support groups, webinars and editorial content.
+  description: Labayh (لبيه) publishes its consultant directory, therapeutic programs, support groups, webinars and editorial content through the WordPress REST API mounted at https://labayh.net/wp-json. The collection and item GET operations documented here were verified to respond 200 anonymously; at derivation time the directory exposed 875 consultants across 255 specialty categories, 2,162 blog articles, 33 recorded webinars, 10 therapeutic programs and 12 support groups. Write operations are listed because the server advertises them, but they require an authenticated WordPress user and are not part of a published partner program. This description was derived from the server's own discovery document and per-route OPTIONS schemas — Labayh does not publish an OpenAPI description or a developer portal of its own.
+  contact:
+    name: Labayh
+    url: https://labayh.net/en/contact-us/
+  termsOfService: https://labayh.net/en/terms-conditions/
+  x-derived-from: https://labayh.net/wp-json/
+  x-derivation-method: derived
+  x-derivation-date: '2026-07-19'
+servers:
+- url: https://labayh.net/wp-json
+  description: Production
+security:
+- applicationPassword: []
+- cookieNonce: []
+tags:
+- name: Content
+  description: Blog articles, pages, media, taxonomy terms, comments and author profiles.
+paths:
+  /wp/v2/posts:
+    get:
+      operationId: listPosts
+      summary: List posts
+      description: Blog articles published on labayh.net.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة على مقالات مُسندة لكُتاب مُعينين.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة لاستثناء مقالات مُسندة لكُتاب مُعينين.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: categories
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة categories.
+      - name: categories_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة categories.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: format
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - standard
+            - aside
+            - chat
+            - gallery
+            - link
+            - image
+            - quote
+            - status
+            - video
+            - audio
+        description: تقييد مجموعة النتائج لتقتصر على العناصر المسندة إلى تنسيق واحد أو أكثر من التنسيقات المحددة.
+      - name: ignore_sticky
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+        description: تجاهل التدوينات المثبتة أم لا.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          default: date
+        description: فرز المجموعة حسب خاصية المقالة.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: كيفية تفسير مدخلات البحث.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - publish
+            - future
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+            - request-pending
+            - request-confirmed
+            - request-failed
+            - request-completed
+            - acf-disabled
+            - any
+          default: publish
+        description: حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر.
+      - name: sticky
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: حصر النتيجة على العناصر المُثبتة.
+      - name: tags
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة tags.
+      - name: tags_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة tags.
+      - name: tax_relation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AND
+          - OR
+        description: حصر النتائج بناءً على العلاقة بين عدة فئات.
+      responses:
+        '200':
+          description: A page of posts.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 2162
+    post:
+      operationId: createPost
+      summary: Create a post
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              $ref: '#/components/schemas/Post'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id001
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/posts/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the posts item.
+      schema:
+        type: integer
+    get:
+      operationId: getPost
+      summary: Retrieve a single posts item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: excerpt_length
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تجاوز طول المقتطف الافتراضي.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة مرور المقالة إذا كانت محمية بكلمة مرور.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updatePost
+      summary: Update a posts item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id002
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deletePost
+      summary: Delete a posts item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/pages:
+    get:
+      operationId: listPages
+      summary: List pages
+      description: Static pages published on labayh.net.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة على مقالات مُسندة لكُتاب مُعينين.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة لاستثناء مقالات مُسندة لكُتاب مُعينين.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: menu_order
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على مقالات مع قيمة menu_order مُعينة.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          - menu_order
+          default: date
+        description: فرز المجموعة حسب خاصية المقالة.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر المرتبطة بعنصر أب مُعين.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر الغير مرتبطة بعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: كيفية تفسير مدخلات البحث.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - publish
+            - future
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+            - request-pending
+            - request-confirmed
+            - request-failed
+            - request-completed
+            - acf-disabled
+            - any
+          default: publish
+        description: حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر.
+      responses:
+        '200':
+          description: A page of pages.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: createPage
+      summary: Create a page
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              $ref: '#/components/schemas/Page'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id003
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/pages/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the pages item.
+      schema:
+        type: integer
+    get:
+      operationId: getPage
+      summary: Retrieve a single pages item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: excerpt_length
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تجاوز طول المقتطف الافتراضي.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة مرور المقالة إذا كانت محمية بكلمة مرور.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updatePage
+      summary: Update a pages item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              $ref: '#/components/schemas/Page'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id004
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deletePage
+      summary: Delete a pages item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/categories:
+    get:
+      operationId: listCategories
+      summary: List categories
+      description: Blog categories.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: hide_empty
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا يجب إخفاء العناصر الغير مُسندة لأي مقالة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+        description: فرز المجموعة حسب خاصية العنصر.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لمقالة مُعينة.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة.
+      responses:
+        '200':
+          description: A page of categories.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 39
+    post:
+      operationId: createCategory
+      summary: Create a categorie
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              $ref: '#/components/schemas/Category'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id005
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/categories/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the categories item.
+      schema:
+        type: integer
+    get:
+      operationId: getCategory
+      summary: Retrieve a single categories item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateCategory
+      summary: Update a categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              $ref: '#/components/schemas/Category'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id006
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteCategory
+      summary: Delete a categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: مطلوب أن تكون true، لأن العناصر لا تدعم النقل لسلة المهملات.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/tags:
+    get:
+      operationId: listTags
+      summary: List tags
+      description: Blog tags.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: hide_empty
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا يجب إخفاء العناصر الغير مُسندة لأي مقالة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+        description: فرز المجموعة حسب خاصية العنصر.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لمقالة مُعينة.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة.
+      responses:
+        '200':
+          description: A page of tags.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 95
+    post:
+      operationId: createTag
+      summary: Create a tag
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id007
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/tags/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the tags item.
+      schema:
+        type: integer
+    get:
+      operationId: getTag
+      summary: Retrieve a single tags item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateTag
+      summary: Update a tags item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id008
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTag
+      summary: Delete a tags item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: مطلوب أن تكون true، لأن العناصر لا تدعم النقل لسلة المهملات.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/media:
+    get:
+      operationId: listMedia
+      summary: List media
+      description: Media library items (images and attachments).
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة على مقالات مُسندة لكُتاب مُعينين.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة لاستثناء مقالات مُسندة لكُتاب مُعينين.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: media_type
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - image
+            - video
+            - text
+            - application
+            - audio
+        description: قصر مجموعة النتائج على المرفقات من نوع وسائط معين أو أنواع وسائط.
+      - name: mime_type
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: قصر مجموعة النتائج على المرفقات من نوع MIME معين أو أنواع MIME.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          default: date
+        description: فرز المجموعة حسب خاصية المقالة.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر المرتبطة بعنصر أب مُعين.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر الغير مرتبطة بعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: كيفية تفسير مدخلات البحث.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - inherit
+            - private
+            - trash
+          default: inherit
+        description: حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر.
+      responses:
+        '200':
+          description: A page of media.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MediaItem'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 3565
+    post:
+      operationId: createMediaItem
+      summary: Create a media
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id009
+              $ref: '#/components/schemas/MediaItem'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id009
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/media/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the media item.
+      schema:
+        type: integer
+    get:
+      operationId: getMediaItem
+      summary: Retrieve a single media item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaItem'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateMediaItem
+      summary: Update a media item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id010
+              $ref: '#/components/schemas/MediaItem'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id010
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteMediaItem
+      summary: Delete a media item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/comments:
+    get:
+      operationId: listComments
+      summary: List comments
+      description: Comments on published content.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على التعليقات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: author
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: حصر النتائج على التعليقات التي أرسلت من مستخدمين بمُعرفات مُعينة. يتطلب تفويض.
+      - name: author_email
+        in: query
+        required: false
+        schema:
+          type: string
+          format: email
+        description: حصر النتائج على من أرسلت من كاتب ببريد إلكتروني مُعين. يتطلب تفويض.
+      - name: author_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        description: حصر النتائج على التعليقات الغير مُسندة لمستخدمين مُعينين. يتطلب تفويض.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على التعليقات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - date
+          - date_gmt
+          - id
+          - include
+          - post
+          - parent
+          - type
+          default: date_gmt
+        description: فرز المجموعة حسب خاصية التعليق.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على التعليقات المرتبطة بتعليق أب مُعين.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على التعليقات غير المرتبطة بتعليق أب مُعين.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة مرور المقالة إذا كانت محمية بكلمة مرور.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتيجة على التعليقات المُسندة لمقالات بمُعرفات (IDs) مُعينة.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          default: approve
+        description: حصر النتائج على التعليقات المُسندة لحالة مُعينة. يتطلب تفويض.
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          default: comment
+        description: حصر النتائج على التعليقات من نوع مُعين. يتطلب تفويض.
+      responses:
+        '200':
+          description: A page of comments.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: createComment
+      summary: Create a comment
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id011
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id011
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/comments/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the comments item.
+      schema:
+        type: integer
+    get:
+      operationId: getComment
+      summary: Retrieve a single comments item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة المرور للمقال المرتبط مع التعليق (إذا كان المقال محمياً بكلمة مرور).
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateComment
+      summary: Update a comments item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id012
+              $ref: '#/components/schemas/Comment'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id012
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteComment
+      summary: Delete a comments item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة المرور للمقال المرتبط مع التعليق (إذا كان المقال محمياً بكلمة مرور).
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/users:
+    get:
+      operationId: listUsers
+      summary: List users
+      description: Public author profiles.
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: capabilities
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر مجموعة النتائج على المستخدمين الذين تطابق صلاحياتهم صلاحية واحدة على الأقل. يمكن استخدام قائمة csv أو صلاحية مفردة.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: has_published_posts
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: حصر مجموعة النتائج بالمستخدمين الذين نشروا مقالات.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - registered_date
+          - slug
+          - include_slugs
+          - email
+          - url
+          default: name
+        description: فرز المجموعة حسب خاصية المستخدم.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: roles
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج على المستخدمين الذين يطابق دورهم دور واحد على الأقل. يمكن استخدام قائمة csv أو دور مفرد.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - email
+            - name
+            - id
+            - username
+            - slug
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج للأعضاء مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: who
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - authors
+        description: حصر نتائج المستخدمين الذين يعتبرون كُتاب.
+      responses:
+        '200':
+          description: A page of users.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: createUser
+      summary: Create a user
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id013
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id013
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/users/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the users item.
+      schema:
+        type: integer
+    get:
+      operationId: getUser
+      summary: Retrieve a single users item
+      tags:
+      - Content
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateUser
+      summary: Update a users item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      requestBody:
+        content:
+          application/json:
+            schema: &id014
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id014
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteUser
+      summary: Delete a users item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Content
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: مطلوب أن تكون true، لان النقل لسلة المهملات غير مدعوم على المستخدمين.
+      - name: reassign
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: إعادة إسناد مقالات المستخدم المحذوف وربطها بهذا المستخدم.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: The authenticated user is not allowed to perform this action (rest_forbidden).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required (rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    User:
+      type: object
+      title: user
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للمستخدم.
+        username:
+          type: string
+          description: اسم الدخول للمستخدم.
+        name:
+          type: string
+          description: اسم العرض للمستخدم.
+        first_name:
+          type: string
+          description: الاسم الأول للمستخدم.
+        last_name:
+          type: string
+          description: الاسم الأخير للمستخدم.
+        email:
+          type: string
+          format: email
+          description: عنوان البريد الإلكتروني للمستخدم.
+        url:
+          type: string
+          format: uri
+          description: رابط المستخدم.
+        description:
+          type: string
+          description: وصف المستخدم.
+        link:
+          type: string
+          format: uri
+          description: رابط المستخدم ككاتب.
+        locale:
+          type: string
+          enum:
+          - ''
+          - en_US
+          - ar
+          - en_GB
+          description: لغة المستخدم المحلية.
+        nickname:
+          type: string
+          description: الاسم المستعار لهذا المستخدم.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمستخدم.
+        registered_date:
+          type: string
+          format: date-time
+          description: تاريخ تسجيل المستخدم.
+        roles:
+          type: array
+          description: الأدوار المُسندة للمستخدم.
+          items:
+            type: string
+        password:
+          type: string
+          description: كلمة مرور المستخدم (ﻻ يتم تضمينها أبدًا).
+        capabilities:
+          type: object
+          description: كل الصلاحيات المُسندة للمستخدم.
+          additionalProperties: true
+        extra_capabilities:
+          type: object
+          description: أي صلاحيات إضافية مُسندة للمستخدم.
+          additionalProperties: true
+        avatar_urls:
+          type: object
+          description: رابط الصورة الرمزية للمستخدم.
+          properties:
+            '24':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 24 بكسل.
+            '48':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 48 بكسل.
+            '96':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 96 بكسل.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            persisted_preferences:
+              type: object
+              properties:
+                _modified:
+                  type: string
+                  format: date-time
+                  description: التاريخ والوقت التي تم حفظ التفضيلات فيه.
+    MediaItem:
+      type: object
+      title: attachment
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        author:
+          type: integer
+          description: مُعرف كاتب المقالة.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        comment_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت التعليقات مفتوحة على المقالة.
+        ping_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+        alt_text:
+          type: string
+          description: النص البديل المعروض عندما لا يتم عرض المرفق.
+        caption:
+          type: object
+          description: شرح المرفق.
+          properties:
+            raw:
+              type: string
+              description: الكلمات التوضيحية للمرفق، كما هي في قاعدة البيانات.
+            rendered:
+              type: string
+              description: كلمات توضيحية (HTML) للمرفق، مُعدة للعرض.
+        description:
+          type: object
+          description: وصف المرفق.
+          properties:
+            raw:
+              type: string
+              description: وصف المرفق، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: وصف HTML للمرفق، مُعد للعرض.
+        media_type:
+          type: string
+          enum:
+          - image
+          - file
+          description: نوع المرفق.
+        mime_type:
+          type: string
+          description: نوع (MIME) المرفق.
+        media_details:
+          type: object
+          description: تفاصيل حول ملف الوسائط، خاصة بنوعه.
+          additionalProperties: true
+        post:
+          type: integer
+          description: مُعرف المقالة المرتبطة بالمرفق.
+        source_url:
+          type: string
+          format: uri
+          description: رابط ملف المرفق الأصلي.
+        missing_image_sizes:
+          type: array
+          description: قائمة أحجام الصور المفقودة من المرفق.
+          items:
+            type: string
+        filename:
+          type: string
+          description: اسم ملف المرفق الأصلي.
+        filesize:
+          type: integer
+          description: حجم ملف المرفق بالبايت.
+        exif_orientation:
+          type: integer
+          description: قيمة اتجاه EXIF. القيم من 1 إلى 8 تتبع مواصفات EXIF، حيث يعني 1 عدم الحاجة إلى التدوير.
+    Error:
+      type: object
+      title: Error
+      description: The WordPress REST error envelope returned on every 4xx/5xx response.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            params:
+              type: object
+              additionalProperties: true
+              description: Per-parameter validation messages.
+    Comment:
+      type: object
+      title: comment
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للتعليق.
+        author:
+          type: integer
+          description: مُعرف المستخدم، إذا كان الكاتب موجود كمُستخدم.
+        author_email:
+          type: string
+          format: email
+          description: عنوان البريد الإلكتروني لكاتب التعليق.
+        author_ip:
+          type: string
+          format: ip
+          description: عنوان الـ IP لكاتب التعليق.
+        author_name:
+          type: string
+          description: اسم العرض لكاتب التعليق.
+        author_url:
+          type: string
+          format: uri
+          description: رابط URL لكاتب التعليق.
+        author_user_agent:
+          type: string
+          description: وكيل المستخدم (User Agent) لكاتب التعليق.
+        content:
+          type: object
+          description: محتوى التعليق.
+          properties:
+            raw:
+              type: string
+              description: محتوى التعليق، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للتعليق، مُعد للعرض.
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر التعليق، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر التعليق، بتوقيت GMT.
+        link:
+          type: string
+          format: uri
+          description: رابط إلى التعليق.
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للتعليق.
+        post:
+          type: integer
+          description: مُعرف كائن المقالة المرتبطة.
+        status:
+          type: string
+          description: حالة التعليق.
+        type:
+          type: string
+          description: نوع التعليق.
+        author_avatar_urls:
+          type: object
+          description: رابط الصورة الرمزية لكاتب التعليق.
+          properties:
+            '24':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 24 بكسل.
+            '48':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 48 بكسل.
+            '96':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 96 بكسل.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            _wp_note_status:
+              type: string
+              enum:
+              - resolved
+              - reopen
+              description: حالة حل الملاحظة
+    Page:
+      type: object
+      title: page
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للمقالة.
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        author:
+          type: integer
+          description: مُعرف كاتب المقالة.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        comment_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت التعليقات مفتوحة على المقالة.
+        ping_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
+        menu_order:
+          type: integer
+          description: ترتيب المقالة بالعلاقة مع المقالات الأخرى.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+    Post:
+      type: object
+      title: post
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        author:
+          type: integer
+          description: مُعرف كاتب المقالة.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        comment_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت التعليقات مفتوحة على المقالة.
+        ping_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
+        format:
+          type: string
+          enum:
+          - standard
+          - aside
+          - chat
+          - gallery
+          - link
+          - image
+          - quote
+          - status
+          - video
+          - audio
+          description: بنية المقالة.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        sticky:
+          type: boolean
+          description: ما إذا كان يجب معاملة المقالة على أنه مُثبتة.
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+        categories:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة category.
+          items:
+            type: integer
+        tags:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة post_tag.
+          items:
+            type: integer
+    Category:
+      type: object
+      title: category
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - category
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+    Tag:
+      type: object
+      title: tag
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - post_tag
+          description: خاصية نوع العنصر.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: 'WordPress application passwords, advertised by the API index at https://labayh.net/wp-json/ (authorization endpoint: https://labayh.net/wp-admin/authorize-application.php). Required for every write operation; the documented read operations need no credentials.'
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: Cookie-authenticated first-party requests pass a nonce in the X-WP-Nonce header.

@@ -1,0 +1,1604 @@
+openapi: 3.1.0
+info:
+  title: Labayh Content Consultants Webinars API
+  version: wp/v2
+  summary: Public read access to Labayh's consultant directory, therapeutic programs, support groups, webinars and editorial content.
+  description: Labayh (لبيه) publishes its consultant directory, therapeutic programs, support groups, webinars and editorial content through the WordPress REST API mounted at https://labayh.net/wp-json. The collection and item GET operations documented here were verified to respond 200 anonymously; at derivation time the directory exposed 875 consultants across 255 specialty categories, 2,162 blog articles, 33 recorded webinars, 10 therapeutic programs and 12 support groups. Write operations are listed because the server advertises them, but they require an authenticated WordPress user and are not part of a published partner program. This description was derived from the server's own discovery document and per-route OPTIONS schemas — Labayh does not publish an OpenAPI description or a developer portal of its own.
+  contact:
+    name: Labayh
+    url: https://labayh.net/en/contact-us/
+  termsOfService: https://labayh.net/en/terms-conditions/
+  x-derived-from: https://labayh.net/wp-json/
+  x-derivation-method: derived
+  x-derivation-date: '2026-07-19'
+servers:
+- url: https://labayh.net/wp-json
+  description: Production
+security:
+- applicationPassword: []
+- cookieNonce: []
+tags:
+- name: Webinars
+  description: Live and recorded webinar sessions and their categories.
+paths:
+  /wp/v2/recorded_webinar:
+    get:
+      operationId: listRecordedWebinar
+      summary: List recorded webinar
+      description: Recorded webinar sessions.
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: menu_order
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على مقالات مع قيمة menu_order مُعينة.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          - menu_order
+          default: date
+        description: فرز المجموعة حسب خاصية المقالة.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر المرتبطة بعنصر أب مُعين.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر الغير مرتبطة بعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: recorded_webinar_categories
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة recorded_webinar_categories.
+      - name: recorded_webinar_categories_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة recorded_webinar_categories.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: كيفية تفسير مدخلات البحث.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - publish
+            - future
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+            - request-pending
+            - request-confirmed
+            - request-failed
+            - request-completed
+            - acf-disabled
+            - any
+          default: publish
+        description: حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر.
+      - name: tax_relation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AND
+          - OR
+        description: حصر النتائج بناءً على العلاقة بين عدة فئات.
+      responses:
+        '200':
+          description: A page of recorded webinar.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecordedWebinar'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 33
+    post:
+      operationId: createRecordedWebinar
+      summary: Create a recorded webinar
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              $ref: '#/components/schemas/RecordedWebinar'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id001
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/recorded_webinar/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the recorded webinar item.
+      schema:
+        type: integer
+    get:
+      operationId: getRecordedWebinar
+      summary: Retrieve a single recorded webinar item
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: excerpt_length
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تجاوز طول المقتطف الافتراضي.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة مرور المقالة إذا كانت محمية بكلمة مرور.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordedWebinar'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecordedWebinar
+      summary: Update a recorded webinar item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              $ref: '#/components/schemas/RecordedWebinar'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id002
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecordedWebinar
+      summary: Delete a recorded webinar item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordedWebinar'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/recorded_webinar_categories:
+    get:
+      operationId: listRecordedWebinarCategories
+      summary: List recorded webinar categories
+      description: Categories used to classify recorded webinars.
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: hide_empty
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا يجب إخفاء العناصر الغير مُسندة لأي مقالة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+        description: فرز المجموعة حسب خاصية العنصر.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لمقالة مُعينة.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة.
+      responses:
+        '200':
+          description: A page of recorded webinar categories.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecordedWebinarCategory'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: createRecordedWebinarCategory
+      summary: Create a recorded webinar categorie
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              $ref: '#/components/schemas/RecordedWebinarCategory'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id003
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/recorded_webinar_categories/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the recorded webinar categories item.
+      schema:
+        type: integer
+    get:
+      operationId: getRecordedWebinarCategory
+      summary: Retrieve a single recorded webinar categories item
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordedWebinarCategory'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecordedWebinarCategory
+      summary: Update a recorded webinar categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              $ref: '#/components/schemas/RecordedWebinarCategory'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id004
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecordedWebinarCategory
+      summary: Delete a recorded webinar categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: مطلوب أن تكون true، لأن العناصر لا تدعم النقل لسلة المهملات.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordedWebinarCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/live_webinar:
+    get:
+      operationId: listLiveWebinar
+      summary: List live webinar
+      description: Scheduled live webinar sessions.
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: live_webinar_categories
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة live_webinar_categories.
+      - name: live_webinar_categories_exclude
+        in: query
+        required: false
+        schema:
+          type: object
+          additionalProperties: true
+        description: حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة live_webinar_categories.
+      - name: menu_order
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على مقالات مع قيمة menu_order مُعينة.
+      - name: modified_after
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: modified_before
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+        description: حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601.
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تخطي النتائج برقم محدد من العناصر.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - author
+          - date
+          - id
+          - include
+          - modified
+          - parent
+          - relevance
+          - slug
+          - include_slugs
+          - title
+          - menu_order
+          default: date
+        description: فرز المجموعة حسب خاصية المقالة.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر المرتبطة بعنصر أب مُعين.
+      - name: parent_exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على العناصر الغير مرتبطة بعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: search_columns
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - post_title
+            - post_content
+            - post_excerpt
+          default: []
+        description: مجموعة من أسماء الأعمدة التي يتعين البحث فيها
+      - name: search_semantics
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - exact
+        description: كيفية تفسير مدخلات البحث.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة.
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - publish
+            - future
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+            - request-pending
+            - request-confirmed
+            - request-failed
+            - request-completed
+            - acf-disabled
+            - any
+          default: publish
+        description: حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر.
+      - name: tax_relation
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AND
+          - OR
+        description: حصر النتائج بناءً على العلاقة بين عدة فئات.
+      responses:
+        '200':
+          description: A page of live webinar.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LiveWebinar'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+      x-observed-total: 0
+    post:
+      operationId: createLiveWebinar
+      summary: Create a live webinar
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              $ref: '#/components/schemas/LiveWebinar'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id005
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/live_webinar/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the live webinar item.
+      schema:
+        type: integer
+    get:
+      operationId: getLiveWebinar
+      summary: Retrieve a single live webinar item
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: excerpt_length
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: تجاوز طول المقتطف الافتراضي.
+      - name: password
+        in: query
+        required: false
+        schema:
+          type: string
+        description: كلمة مرور المقالة إذا كانت محمية بكلمة مرور.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveWebinar'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateLiveWebinar
+      summary: Update a live webinar item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              $ref: '#/components/schemas/LiveWebinar'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id006
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteLiveWebinar
+      summary: Delete a live webinar item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveWebinar'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /wp/v2/live_webinar_categories:
+    get:
+      operationId: listLiveWebinarCategories
+      summary: List live webinar categories
+      description: Categories used to classify live webinars.
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      - name: exclude
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: تأكد أن النتيجة تستثني معرِّفات معينة.
+      - name: hide_empty
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: ما إذا يجب إخفاء العناصر الغير مُسندة لأي مقالة.
+      - name: include
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+          default: []
+        description: حصر النتائج على مُعرفات مُعينة.
+      - name: order
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+        description: خاصية الترتيب إما تصاعدي أو تنازلي.
+      - name: orderby
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+        description: فرز المجموعة حسب خاصية العنصر.
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: الصفحة الحالية للمجموعة.
+      - name: parent
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لعنصر أب مُعين.
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: العدد الأقصى للعناصر ليتم إرجاعه في النتائج.
+      - name: post
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: حصر النتيجة على عناصر مُسندة لمقالة مُعينة.
+      - name: search
+        in: query
+        required: false
+        schema:
+          type: string
+        description: حصر النتائج على مطابقة سلسلة نصية.
+      - name: slug
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+        description: حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة.
+      responses:
+        '200':
+          description: A page of live webinar categories.
+          headers:
+            X-WP-Total:
+              description: Total number of matching items.
+              schema:
+                type: integer
+            X-WP-TotalPages:
+              description: Total number of pages available.
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LiveWebinarCategory'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    post:
+      operationId: createLiveWebinarCategory
+      summary: Create a live webinar categorie
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              $ref: '#/components/schemas/LiveWebinarCategory'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema: *id007
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /wp/v2/live_webinar_categories/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      description: Unique identifier for the live webinar categories item.
+      schema:
+        type: integer
+    get:
+      operationId: getLiveWebinarCategory
+      summary: Retrieve a single live webinar categories item
+      tags:
+      - Webinars
+      security: []
+      parameters:
+      - name: context
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+        description: نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد.
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveWebinarCategory'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateLiveWebinarCategory
+      summary: Update a live webinar categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              $ref: '#/components/schemas/LiveWebinarCategory'
+      responses:
+        '200':
+          description: The updated item.
+          content:
+            application/json:
+              schema: *id008
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteLiveWebinarCategory
+      summary: Delete a live webinar categories item
+      description: Requires an authenticated WordPress user with sufficient capability.
+      tags:
+      - Webinars
+      parameters:
+      - name: force
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+        description: مطلوب أن تكون true، لأن العناصر لا تدعم النقل لسلة المهملات.
+      responses:
+        '200':
+          description: The deleted item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveWebinarCategory'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Forbidden:
+      description: The authenticated user is not allowed to perform this action (rest_forbidden).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required (rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      title: Error
+      description: The WordPress REST error envelope returned on every 4xx/5xx response.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            params:
+              type: object
+              additionalProperties: true
+              description: Per-parameter validation messages.
+    RecordedWebinarCategory:
+      type: object
+      title: recorded_webinar_categories
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - recorded_webinar_categories
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+    LiveWebinarCategory:
+      type: object
+      title: live_webinar_categories
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - live_webinar_categories
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+    RecordedWebinar:
+      type: object
+      title: recorded_webinar
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للمقالة.
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        menu_order:
+          type: integer
+          description: ترتيب المقالة بالعلاقة مع المقالات الأخرى.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+        recorded_webinar_categories:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة recorded_webinar_categories.
+          items:
+            type: integer
+    LiveWebinar:
+      type: object
+      title: live_webinar
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للمقالة.
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        menu_order:
+          type: integer
+          description: ترتيب المقالة بالعلاقة مع المقالات الأخرى.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+        live_webinar_categories:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة live_webinar_categories.
+          items:
+            type: integer
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: 'WordPress application passwords, advertised by the API index at https://labayh.net/wp-json/ (authorization endpoint: https://labayh.net/wp-admin/authorize-application.php). Required for every write operation; the documented read operations need no credentials.'
+    cookieNonce:
+      type: apiKey
+      in: header
+      name: X-WP-Nonce
+      description: Cookie-authenticated first-party requests pass a nonce in the X-WP-Nonce header.
