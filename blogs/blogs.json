@@ -1,0 +1,28 @@
+{
+  "repo": "labayh",
+  "feeds": [
+    {
+      "source": "https://labayh.net/en/feed/",
+      "feed_url": "https://labayh.net/en/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://labayh.net/en/contact-us/",
+      "feed_url": "https://labayh.net/en/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
+      "source": "https://labayh.net/en/blog/",
+      "feed_url": "https://labayh.net/en/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 1,
+  "fetched": "2026-07-25T15:00:33Z"
+}

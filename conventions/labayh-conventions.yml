@@ -1,0 +1,145 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/labayh-content-openapi.yml + live probes of https://labayh.net/wp-json/
+description: >-
+  Cross-cutting request/response semantics for the Labayh Content API. Labayh publishes no
+  developer documentation of its own, so every convention below was derived from the live
+  WordPress REST surface it operates — the discovery index, per-route OPTIONS schemas, and
+  observed response headers. Where a convention is genuinely absent (idempotency, request-id
+  tracing, rate-limit signalling) that is recorded as absent rather than assumed.
+authentication:
+  style: http-basic + cookie-nonce
+  read_access: anonymous
+  write_access: authenticated
+  schemes:
+  - name: applicationPassword
+    type: http basic
+    note: >-
+      WordPress application passwords. Advertised by the API index; the authorization endpoint
+      is https://labayh.net/wp-admin/authorize-application.php. There is no public developer
+      signup — credentials belong to WordPress users of the site.
+  - name: cookieNonce
+    type: apiKey (header X-WP-Nonce)
+    note: First-party browser requests only.
+  detail: authentication/labayh-authentication.yml
+pagination:
+  style: page-number
+  parameters:
+  - name: page
+    default: 1
+    description: One-based page index.
+  - name: per_page
+    default: 10
+    maximum: 100
+    description: Items per page.
+  - name: offset
+    description: Skip a number of items, overriding page.
+  response_headers:
+  - name: X-WP-Total
+    description: Total number of items matching the query.
+  - name: X-WP-TotalPages
+    description: Total number of pages available at the current per_page.
+  link_header: >-
+    Collection responses emit RFC 5988 Link headers with rel="next" / rel="prev" for cursoring
+    through pages.
+  envelope: >-
+    Collections are returned as a bare JSON array — there is no wrapper object. Paging metadata
+    lives entirely in response headers.
+filtering:
+  parameters:
+  - search
+  - include
+  - exclude
+  - slug
+  - order
+  - orderby
+  - after
+  - before
+  - modified_after
+  - modified_before
+  - status
+  taxonomy_filters: >-
+    Custom post types accept their taxonomy as a filter parameter — for example
+    ?consultant_categories=<term_id> on /wp/v2/consultant.
+field_selection:
+  sparse_fields:
+    parameter: _fields
+    description: Comma-separated list restricting which properties are returned.
+    example: /wp/v2/consultant?_fields=id,slug,title,link
+  embedding:
+    parameter: _embed
+    description: >-
+      Inlines linked resources (featured media, taxonomy terms, author) into an _embedded
+      object, avoiding follow-up requests. This is the closest analogue to field expansion.
+  context:
+    parameter: context
+    values: [view, embed, edit]
+    default: view
+    description: >-
+      Controls the property set returned. edit requires authentication; anonymous callers are
+      limited to view and embed.
+hypermedia:
+  style: HAL-like _links
+  description: >-
+    Every item carries a _links object with self, collection, about, author, replies,
+    wp:attachment and wp:term relations. This is the primary way to traverse from a consultant
+    to its specialty terms or featured image.
+idempotency:
+  supported: false
+  note: >-
+    Labayh documents no idempotency key and the OpenAPI declares no Idempotency-Key parameter.
+    Writes are plain POST/PATCH/DELETE against WordPress; retrying a POST creates a duplicate.
+    No Idempotency pointer is emitted for this provider.
+request_tracing:
+  request_id_header: null
+  note: No correlation or request-id header was observed on responses.
+rate_limiting:
+  documented: false
+  headers_observed: []
+  note: >-
+    No rate-limit headers or published quota. Cloudflare fronts the origin, so bot-management
+    throttling may apply without an advertised contract. See well-known/labayh-well-known.yml
+    for the crawler restrictions Labayh does declare.
+  detail: null
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  namespaces:
+  - wp/v2
+  - consultants/v1
+  - contact-form-7/v1
+  - mc4wp/v1
+  - oembed/1.0
+  - batch/v1
+  note: >-
+    Version lives in the namespace segment after /wp-json. Labayh publishes no versioning or
+    deprecation policy of its own; see lifecycle/labayh-lifecycle.yml.
+error_envelope:
+  format: wordpress-rest
+  rfc9457: false
+  content_type: application/json
+  shape:
+    code: Machine-readable error slug, e.g. rest_post_invalid_id.
+    message: Human-readable message, localised to the site language.
+    data:
+      status: The HTTP status code, repeated in the body.
+      params: Per-parameter validation messages on 400 responses.
+  detail: errors/labayh-problem-types.yml
+localization:
+  languages: [ar, en]
+  note: >-
+    The site is bilingual with Arabic as the primary language. Content is served per-locale
+    under /ar/ and /en/ prefixes; API responses carry the locale of the underlying post.
+    Error messages are returned in the site language rather than English.
+batch:
+  endpoint: /batch/v1
+  method: POST
+  note: >-
+    WordPress batch request endpoint is registered and would allow several writes in one call.
+    Requires authentication; Labayh publishes no guidance for it.
+cross_links:
+  errors: errors/labayh-problem-types.yml
+  lifecycle: lifecycle/labayh-lifecycle.yml
+  authentication: authentication/labayh-authentication.yml
+  data_model: data-model/labayh-data-model.yml
+  well_known: well-known/labayh-well-known.yml

@@ -1,0 +1,411 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "consultant",
+  "type": "object",
+  "properties": {
+    "date": {
+      "description": "تاريخ نشر المقالة، بتوقيت الموقع.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "date_gmt": {
+      "description": "تاريخ نشر المقالة، بتوقيت GMT.",
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "guid": {
+      "description": "المُعرف العمومي الفريد للمقالة.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "readonly": true,
+      "properties": {
+        "raw": {
+          "description": "مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.",
+          "type": "string",
+          "context": [
+            "edit"
+          ],
+          "readonly": true
+        },
+        "rendered": {
+          "description": "مُعرف (GUID) للمقالة، مُعد للعرض.",
+          "type": "string",
+          "context": [
+            "view",
+            "edit"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "id": {
+      "description": "مُعرف فريد للمقالة.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "link": {
+      "description": "رابط URL للمقالة.",
+      "type": "string",
+      "format": "uri",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "modified": {
+      "description": "تاريخ آخر تعديل للمقالة، بتوقيت الموقع.",
+      "type": "string",
+      "format": "date-time",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "modified_gmt": {
+      "description": "تاريخ آخر تعديل للمقالة، بتوقيت GMT.",
+      "type": "string",
+      "format": "date-time",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "slug": {
+      "description": "مُعرف أبجدي رقمي للمقالة فريد من نوعه.",
+      "type": "string",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "status": {
+      "description": "حالة مُسماة للمقالة.",
+      "type": "string",
+      "enum": [
+        "publish",
+        "future",
+        "draft",
+        "pending",
+        "private",
+        "acf-disabled"
+      ],
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "type": {
+      "description": "نوع المقالة.",
+      "type": "string",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "readonly": true
+    },
+    "password": {
+      "description": "كلمة مرور لحماية الوصول للمحتوى والمقتطف.",
+      "type": "string",
+      "context": [
+        "edit"
+      ]
+    },
+    "permalink_template": {
+      "description": "قالب الرابط الدائم للمقالة.",
+      "type": "string",
+      "context": [
+        "edit"
+      ],
+      "readonly": true
+    },
+    "generated_slug": {
+      "description": "يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.",
+      "type": "string",
+      "context": [
+        "edit"
+      ],
+      "readonly": true
+    },
+    "class_list": {
+      "description": "مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.",
+      "type": "array",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "readonly": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "parent": {
+      "description": "المعرّف الرئيسي (الأب) للمقالة.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "title": {
+      "description": "عنوان المقالة.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "properties": {
+        "raw": {
+          "description": "عنوان للمقالة، كما هو موجود في قاعدة البيانات.",
+          "type": "string",
+          "context": [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "عنوان HTML للمقالة، مُعد للعرض.",
+          "type": "string",
+          "context": [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "content": {
+      "description": "محتوى المقالة.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "properties": {
+        "raw": {
+          "description": "محتوى المقالة، كما هو موجود في قاعدة البيانات.",
+          "type": "string",
+          "context": [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "محتوى HTML للمقالة، مُعد للعرض.",
+          "type": "string",
+          "context": [
+            "view",
+            "edit"
+          ],
+          "readonly": true
+        },
+        "block_version": {
+          "description": "إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.",
+          "type": "integer",
+          "context": [
+            "edit"
+          ],
+          "readonly": true
+        },
+        "protected": {
+          "description": "ما إذا كان المحتوى محمي بكلمة مرور.",
+          "type": "boolean",
+          "context": [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "excerpt": {
+      "description": "مقتطف المقالة.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ],
+      "properties": {
+        "raw": {
+          "description": "مقتطف المقالة، كما هو موجود في قاعدة البيانات.",
+          "type": "string",
+          "context": [
+            "edit"
+          ]
+        },
+        "rendered": {
+          "description": "مقتطف HTML للمقالة، مُعد للعرض.",
+          "type": "string",
+          "context": [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        },
+        "protected": {
+          "description": "ما إذا كان المقتطف محمي بكلمة مرور.",
+          "type": "boolean",
+          "context": [
+            "view",
+            "edit",
+            "embed"
+          ],
+          "readonly": true
+        }
+      }
+    },
+    "featured_media": {
+      "description": "مُعرف الوسائط المميزة للمقالة.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit",
+        "embed"
+      ]
+    },
+    "menu_order": {
+      "description": "ترتيب المقالة بالعلاقة مع المقالات الأخرى.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "meta": {
+      "description": "الحقول الإضافية.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "properties": {
+        "footnotes": {
+          "type": "string",
+          "title": "",
+          "description": "",
+          "default": ""
+        }
+      }
+    },
+    "template": {
+      "description": "ملف القالب الذي سُيستخدم لعرض المقالة.",
+      "type": "string",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "consultant_categories": {
+      "description": "العناصر المُسندة للمقالة في الفئة consultant_categories.",
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "context": [
+        "view",
+        "edit"
+      ]
+    }
+  },
+  "links": [
+    {
+      "rel": "https://api.w.org/action-publish",
+      "title": "يستطيع العضو الحالي نشر هذه المقالة.",
+      "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/{id}",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "publish",
+              "future"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "rel": "https://api.w.org/action-unfiltered-html",
+      "title": "يُمكن للمستخدم الحالي نشر أكواد HTML وجافا سكربت غير مُصفاة.",
+      "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/{id}",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "raw": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rel": "https://api.w.org/action-assign-consultant_categories",
+      "title": "يستطيع العضو الحالي إسناد عناصر في الفئة consultant_categories.",
+      "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/{id}",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "consultant_categories": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    {
+      "rel": "https://api.w.org/action-create-consultant_categories",
+      "title": "يستطيع العضو الحالي إنشاء عناصر في الفئة consultant_categories.",
+      "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/{id}",
+      "targetSchema": {
+        "type": "object",
+        "properties": {
+          "consultant_categories": {
+            "type": "array",
+            "items": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$id": "https://raw.githubusercontent.com/api-evangelist/labayh/refs/heads/main/json-schema/labayh-consultant.json",
+  "x-source": "OPTIONS https://labayh.net/wp-json/wp/v2/consultant",
+  "x-method": "searched",
+  "x-generated": "2026-07-19"
+}

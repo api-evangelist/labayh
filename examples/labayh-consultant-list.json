@@ -1,0 +1,155 @@
+[
+  {
+    "id": 177574,
+    "date": "2026-06-30T13:01:49",
+    "date_gmt": "2026-06-30T13:01:49",
+    "guid": {
+      "rendered": ""
+    },
+    "modified": "2026-06-30T13:01:49",
+    "modified_gmt": "2026-06-30T13:01:49",
+    "slug": "dr-nashmiya-alrashidi-%f0%9f%87%b0%f0%9f%87%bc",
+    "status": "publish",
+    "type": "consultant",
+    "link": "https://labayh.net/ar/consultants/dr-nashmiya-alrashidi-%f0%9f%87%b0%f0%9f%87%bc/",
+    "title": {
+      "rendered": "د. نشميه الرشيدي 🇰🇼"
+    },
+    "content": {
+      "rendered": "<p>A psychological and educational counselor holding a PhD in psychological burnout and a Master’s degree in psychological counseling (with distinction) from Kuwait University, as well as a Higher Diploma in marital and family counseling from Kuwait University.<br />\nShe possesses 25 years of professional and practical experience in the psychological and educational fields.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>مستشارة نفسية وتربوية حاصلة على درجة الدكتوراه في الاحتراق النفسي وماجستير في الإرشاد النفسي بتقدير امتياز من جامعة الكويت بالإضافة…</p>\n",
+      "protected": false
+    },
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "template": "",
+    "meta": {
+      "footnotes": ""
+    },
+    "consultant_categories": [
+      441,
+      450,
+      457,
+      469,
+      444,
+      462,
+      434,
+      389,
+      443,
+      390,
+      391,
+      449,
+      491,
+      403,
+      399,
+      392,
+      407,
+      468,
+      467,
+      405,
+      470,
+      388,
+      452,
+      509,
+      454,
+      436,
+      451,
+      437,
+      461,
+      453,
+      431,
+      427
+    ],
+    "class_list": [
+      "post-177574",
+      "consultant",
+      "type-consultant",
+      "status-publish",
+      "hentry",
+      "consultant_categories-63e8ec5688cab0d738c483b6",
+      "consultant_categories-63e8ebb588cab0d738c483a2",
+      "consultant_categories-60ce7321e943d711fe09649d",
+      "consultant_categories-62207b7f035f51dc43abb131",
+      "consultant_categories-63e8e07488cab0d738c48252",
+      "consultant_categories-66c1db07fcd9640011e173a1",
+      "consultant_categories-63ea120288cab0d738c4a96f",
+      "consultant_categories-63ea124288cab0d738c4a97d",
+      "consultant_categories-63e8df1088cab0d738c4823e",
+      "consultant_categories-63ea125b88cab0d738c4a981",
+      "consultant_categories-63ea128588cab0d738c4a98b",
+      "consultant_categories-63e8eb9c88cab0d738c4839e",
+      "consultant_categories-63e8e10788cab0d738c48275",
+      "consultant_categories-63e8e7dd88cab0d738c4831d",
+      "consultant_categories-63e8e6da88cab0d738c482ed",
+      "consultant_categories-63ea247d88cab0d738c4b798",
+      "consultant_categories-63e8ec3f88cab0d738c483b2",
+      "consultant_categories-63e8e4aa88cab0d738c482af",
+      "consultant_categories-63e8e0bd88cab0d738c4825d",
+      "consultant_categories-63e8e9e388cab0d738c48378",
+      "consultant_categories-63e8e0e488cab0d738c48271",
+      "consultant_categories-63e8ed5888cab0d738c483e4",
+      "consultant_categories-63e8ecd488cab0d738c483c5",
+      "consultant_categories-63e8ebf388cab0d738c483aa",
+      "consultant_categories-643db59c7dfcfb8f87b50f11",
+      "consultant_categories-63e8df2e88cab0d738c48242",
+      "consultant_categories-63e8ec1f88cab0d738c483ae",
+      "consultant_categories-63e8e0a688cab0d738c48259",
+      "consultant_categories-63e8eae588cab0d738c48396",
+      "consultant_categories-643db5776f862e8f79541095",
+      "consultant_categories-63e8d61388cab0d738c480fd",
+      "consultant_categories-63e8c4bf88cab0d738c47aee",
+      "entry"
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/177574",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/consultant"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/types/consultant"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://labayh.net/ar/wp-json/wp/v2/consultant/177574/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/media?parent=177574"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "consultant_categories",
+          "embeddable": true,
+          "href": "https://labayh.net/ar/wp-json/wp/v2/consultant_categories?post=177574"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

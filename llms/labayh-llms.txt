@@ -1,0 +1,98 @@
+# Labayh
+
+> Labayh (لبيه) is a Saudi Arabian digital mental-health platform offering online psychological,
+> psychiatric and family counselling. It connects patients to 1,000+ licensed specialists through
+> scheduled and instant video sessions, structured therapeutic programs, peer support groups and
+> webinars, and has delivered over 70 million minutes of consultation. It also runs a corporate
+> employee-wellbeing arm (Labayh Business) and a training academy. Labayh is backed by 500 Global.
+
+Labayh does not operate a developer program. It publishes no OpenAPI description, no developer
+portal, no SDKs and no MCP server. What it does operate is a public, anonymously readable
+WordPress REST API at https://labayh.net/wp-json that serves the consultant directory, the
+program and support-group catalogues, the webinar library and the editorial blog. API Evangelist
+derived an OpenAPI description of that surface from the server's own discovery index and OPTIONS
+schemas; everything in this repo is either that derivation or a live probe result.
+
+IMPORTANT — content licensing: labayh.net publishes a Content-Signal directive of
+`search=yes, ai-train=no, use=reference` and disallows GPTBot, Google-Extended,
+Applebot-Extended, Amazonbot, Bytespider and meta-externalagent. Read this content to answer
+questions and cite it by URL; do not retain it for model training.
+
+IMPORTANT — safety: this is a mental-health provider. Return directory and catalogue facts, not
+clinical advice. On any disclosure of crisis or self-harm, surface local emergency services and
+Labayh's support line (920031893) before anything else.
+
+## APIs
+
+- [Labayh Content API](https://labayh.net/wp-json/): Anonymous read access to 875 consultants
+  across 255 specialty categories, 10 therapeutic programs, 12 support groups, 33 recorded
+  webinars and 2,162 blog articles. Write operations exist but require WordPress site
+  credentials; there is no public developer signup.
+
+## Specs
+
+- [OpenAPI 3.1 description](openapi/labayh-content-openapi.yml): 45 paths, 102 operations,
+  25 schemas. Derived from the live discovery document — not published by Labayh.
+- [Consultant JSON Schema](json-schema/labayh-consultant.json)
+- [Consultant category JSON Schema](json-schema/labayh-consultant-categories.json)
+- [Program JSON Schema](json-schema/labayh-program.json)
+- [Support group JSON Schema](json-schema/labayh-support-group.json)
+- [Recorded webinar JSON Schema](json-schema/labayh-recorded-webinar.json)
+- [API Evangelist overlay](overlays/labayh-content-overlay.yaml): provenance and advisory
+  annotations layered over the derived spec.
+
+## Working with the API
+
+- [Conventions](conventions/labayh-conventions.yml): pagination (`page`/`per_page`, max 100,
+  `X-WP-Total` headers, RFC 5988 `Link`), sparse fields (`_fields`), embedding (`_embed`),
+  context, filtering and the bilingual behaviour. No idempotency, no request-id, no published
+  rate limit.
+- [Error catalog](errors/labayh-problem-types.yml): the WordPress `{code, message, data}`
+  envelope — NOT RFC 9457. Branch on `code`; messages are Arabic.
+- [Authentication](authentication/labayh-authentication.yml): application passwords over HTTP
+  Basic, plus an `X-WP-Nonce` cookie scheme. Reads need nothing.
+- [Data model](data-model/labayh-data-model.yml): 19 entities, 35 relationships. Content types
+  carry taxonomy term ids and a `featured_media` pointer; `title`/`content`/`excerpt` are
+  `{rendered: "<html>"}` objects, not strings.
+- [Examples](examples/): real captured responses for consultants, programs, support groups and
+  posts.
+
+## Agent surfaces
+
+- [Agent skills](skills/_index.yml): three packaged read skills — find a consultant by specialty,
+  browse programs and support groups, search the editorial library.
+- [MCP server](mcp/labayh-mcp.yml): CANDIDATE only. Labayh publishes no MCP server; this is a
+  44-tool read-only shape derived from the spec.
+- [Agentic access](agentic-access/labayh-agentic-access.yml): recommended `x-agentic-access`
+  contracts for all 102 operations (44 read, 58 write).
+
+## Operations and security
+
+- [Lifecycle](lifecycle/labayh-lifecycle.yml): versioning is the `wp/v2` namespace segment. No
+  deprecation policy, no SLA, no changelog. Status page at https://status.labayh.net/.
+- [Conformance](conformance/labayh-conformance.yml): REST, JSON Schema, RFC 5988 and TLS 1.3 yes;
+  RFC 9457, OAuth2, OIDC, security.txt and Sunset headers no.
+- [Domain security](security/labayh-domain-security.yml): TLS 1.3, but no HSTS, no DNSSEC, no CAA,
+  and DMARC at `p=none`.
+- [Well-known](well-known/labayh-well-known.yml): every `/.well-known/` document 404s. The
+  Content-Signal robots.txt is the only machine-readable consent surface.
+
+## Docs
+
+- [Website (English)](https://labayh.net/en/)
+- [Website (Arabic)](https://labayh.net/ar/)
+- [About Labayh](https://labayh.net/en/about-labayh/)
+- [Specialists directory](https://labayh.net/en/labayh-consultants/)
+- [Therapy programs](https://labayh.net/en/labayh-programs/)
+- [Support groups](https://labayh.net/en/support_groups/)
+- [Recorded webinars](https://labayh.net/en/recorded_webinars/)
+- [Assessments](https://labayh.net/en/assessments/)
+- [Blog](https://labayh.net/en/blog/)
+- [Labayh Business](https://business.labayh.net/)
+- [Academy](https://academy.labayh.net/)
+- [Client app / booking](https://client.labayh.net/)
+- [Join as a therapist](https://labayh.net/en/joinlabayh/)
+- [Contact](https://labayh.net/en/contact-us/)
+- [Terms and conditions](https://labayh.net/en/terms-conditions/)
+- [Privacy policy](https://labayh.net/en/privacy-policy/)
+- [Status](https://status.labayh.net/)

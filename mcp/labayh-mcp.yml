@@ -1,0 +1,198 @@
+generated: '2026-07-19'
+method: derived
+status: candidate
+source: openapi/labayh-content-openapi.yml
+description: 'Labayh publishes no MCP server — a search of its site, the public MCP registries and the
+  npm @modelcontextprotocol scope found nothing. This is a CANDIDATE tool surface derived from the anonymous
+  read operations of its live content API, offered as the shape an MCP server over Labayh would take.
+  Only read operations are included: writes require WordPress site credentials that no third party holds,
+  and exposing them to an agent would be inappropriate. Any implementation must honour the site''s ai-train=no
+  Content-Signal (see well-known/labayh-well-known.yml).'
+server:
+  name: labayh
+  transport: stdio
+  url: null
+  upstream: https://labayh.net/wp-json
+  auth: none (anonymous read)
+tools:
+- name: list_consultant
+  description: List consultant
+  source_operation: openapi/labayh-content-openapi.yml#listConsultant
+  http: GET /wp/v2/consultant
+- name: get_consultant
+  description: Retrieve a single consultant item
+  source_operation: openapi/labayh-content-openapi.yml#getConsultant
+  http: GET /wp/v2/consultant/{id}
+- name: list_consultant_categories
+  description: List consultant categories
+  source_operation: openapi/labayh-content-openapi.yml#listConsultantCategories
+  http: GET /wp/v2/consultant_categories
+- name: get_consultant_category
+  description: Retrieve a single consultant categories item
+  source_operation: openapi/labayh-content-openapi.yml#getConsultantCategory
+  http: GET /wp/v2/consultant_categories/{id}
+- name: list_program
+  description: List program
+  source_operation: openapi/labayh-content-openapi.yml#listProgram
+  http: GET /wp/v2/program
+- name: get_program
+  description: Retrieve a single program item
+  source_operation: openapi/labayh-content-openapi.yml#getProgram
+  http: GET /wp/v2/program/{id}
+- name: list_program_categories
+  description: List program categories
+  source_operation: openapi/labayh-content-openapi.yml#listProgramCategories
+  http: GET /wp/v2/program_categories
+- name: get_program_category
+  description: Retrieve a single program categories item
+  source_operation: openapi/labayh-content-openapi.yml#getProgramCategory
+  http: GET /wp/v2/program_categories/{id}
+- name: list_support_group
+  description: List support group
+  source_operation: openapi/labayh-content-openapi.yml#listSupportGroup
+  http: GET /wp/v2/support_group
+- name: get_support_group
+  description: Retrieve a single support group item
+  source_operation: openapi/labayh-content-openapi.yml#getSupportGroup
+  http: GET /wp/v2/support_group/{id}
+- name: list_support_group_categories
+  description: List support group categories
+  source_operation: openapi/labayh-content-openapi.yml#listSupportGroupCategories
+  http: GET /wp/v2/support_group_categories
+- name: get_support_group_category
+  description: Retrieve a single support group categories item
+  source_operation: openapi/labayh-content-openapi.yml#getSupportGroupCategory
+  http: GET /wp/v2/support_group_categories/{id}
+- name: list_recorded_webinar
+  description: List recorded webinar
+  source_operation: openapi/labayh-content-openapi.yml#listRecordedWebinar
+  http: GET /wp/v2/recorded_webinar
+- name: get_recorded_webinar
+  description: Retrieve a single recorded webinar item
+  source_operation: openapi/labayh-content-openapi.yml#getRecordedWebinar
+  http: GET /wp/v2/recorded_webinar/{id}
+- name: list_recorded_webinar_categories
+  description: List recorded webinar categories
+  source_operation: openapi/labayh-content-openapi.yml#listRecordedWebinarCategories
+  http: GET /wp/v2/recorded_webinar_categories
+- name: get_recorded_webinar_category
+  description: Retrieve a single recorded webinar categories item
+  source_operation: openapi/labayh-content-openapi.yml#getRecordedWebinarCategory
+  http: GET /wp/v2/recorded_webinar_categories/{id}
+- name: list_live_webinar
+  description: List live webinar
+  source_operation: openapi/labayh-content-openapi.yml#listLiveWebinar
+  http: GET /wp/v2/live_webinar
+- name: get_live_webinar
+  description: Retrieve a single live webinar item
+  source_operation: openapi/labayh-content-openapi.yml#getLiveWebinar
+  http: GET /wp/v2/live_webinar/{id}
+- name: list_live_webinar_categories
+  description: List live webinar categories
+  source_operation: openapi/labayh-content-openapi.yml#listLiveWebinarCategories
+  http: GET /wp/v2/live_webinar_categories
+- name: get_live_webinar_category
+  description: Retrieve a single live webinar categories item
+  source_operation: openapi/labayh-content-openapi.yml#getLiveWebinarCategory
+  http: GET /wp/v2/live_webinar_categories/{id}
+- name: list_event
+  description: List event
+  source_operation: openapi/labayh-content-openapi.yml#listEvent
+  http: GET /wp/v2/event
+- name: get_event
+  description: Retrieve a single event item
+  source_operation: openapi/labayh-content-openapi.yml#getEvent
+  http: GET /wp/v2/event/{id}
+- name: list_event_categories
+  description: List event categories
+  source_operation: openapi/labayh-content-openapi.yml#listEventCategories
+  http: GET /wp/v2/event_categories
+- name: get_event_category
+  description: Retrieve a single event categories item
+  source_operation: openapi/labayh-content-openapi.yml#getEventCategory
+  http: GET /wp/v2/event_categories/{id}
+- name: list_posts
+  description: List posts
+  source_operation: openapi/labayh-content-openapi.yml#listPosts
+  http: GET /wp/v2/posts
+- name: get_post
+  description: Retrieve a single posts item
+  source_operation: openapi/labayh-content-openapi.yml#getPost
+  http: GET /wp/v2/posts/{id}
+- name: list_pages
+  description: List pages
+  source_operation: openapi/labayh-content-openapi.yml#listPages
+  http: GET /wp/v2/pages
+- name: get_page
+  description: Retrieve a single pages item
+  source_operation: openapi/labayh-content-openapi.yml#getPage
+  http: GET /wp/v2/pages/{id}
+- name: list_categories
+  description: List categories
+  source_operation: openapi/labayh-content-openapi.yml#listCategories
+  http: GET /wp/v2/categories
+- name: get_category
+  description: Retrieve a single categories item
+  source_operation: openapi/labayh-content-openapi.yml#getCategory
+  http: GET /wp/v2/categories/{id}
+- name: list_tags
+  description: List tags
+  source_operation: openapi/labayh-content-openapi.yml#listTags
+  http: GET /wp/v2/tags
+- name: get_tag
+  description: Retrieve a single tags item
+  source_operation: openapi/labayh-content-openapi.yml#getTag
+  http: GET /wp/v2/tags/{id}
+- name: list_media
+  description: List media
+  source_operation: openapi/labayh-content-openapi.yml#listMedia
+  http: GET /wp/v2/media
+- name: get_media_item
+  description: Retrieve a single media item
+  source_operation: openapi/labayh-content-openapi.yml#getMediaItem
+  http: GET /wp/v2/media/{id}
+- name: list_comments
+  description: List comments
+  source_operation: openapi/labayh-content-openapi.yml#listComments
+  http: GET /wp/v2/comments
+- name: get_comment
+  description: Retrieve a single comments item
+  source_operation: openapi/labayh-content-openapi.yml#getComment
+  http: GET /wp/v2/comments/{id}
+- name: list_users
+  description: List users
+  source_operation: openapi/labayh-content-openapi.yml#listUsers
+  http: GET /wp/v2/users
+- name: get_user
+  description: Retrieve a single users item
+  source_operation: openapi/labayh-content-openapi.yml#getUser
+  http: GET /wp/v2/users/{id}
+- name: list_types
+  description: List types
+  source_operation: openapi/labayh-content-openapi.yml#listTypes
+  http: GET /wp/v2/types
+- name: list_taxonomies
+  description: List taxonomies
+  source_operation: openapi/labayh-content-openapi.yml#listTaxonomies
+  http: GET /wp/v2/taxonomies
+- name: list_statuses
+  description: List statuses
+  source_operation: openapi/labayh-content-openapi.yml#listStatuses
+  http: GET /wp/v2/statuses
+- name: list_search
+  description: List search
+  source_operation: openapi/labayh-content-openapi.yml#listSearch
+  http: GET /wp/v2/search
+- name: get_consultants_namespace
+  description: Describe the Labayh consultants namespace
+  source_operation: openapi/labayh-content-openapi.yml#getConsultantsNamespace
+  http: GET /consultants/v1
+- name: get_api_index
+  description: Retrieve the API discovery index
+  source_operation: openapi/labayh-content-openapi.yml#getApiIndex
+  http: GET /
+tool_count: 44
+suggested_prompts:
+- Find Labayh consultants specialising in a given condition
+- Summarise the therapeutic programmes Labayh offers
+- List the support groups currently open

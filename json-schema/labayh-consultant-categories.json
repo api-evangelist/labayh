@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "consultant_categories",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "مُعرف فريد للعنصر.",
+      "type": "integer",
+      "context": [
+        "view",
+        "embed",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "count": {
+      "description": "عدد المقالات المنشورة للعنصر.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "description": {
+      "description": "وصف (HTML) للعنصر.",
+      "type": "string",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "link": {
+      "description": "رابط العنصر.",
+      "type": "string",
+      "format": "uri",
+      "context": [
+        "view",
+        "embed",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "name": {
+      "description": "عنوان HTML للعنصر.",
+      "type": "string",
+      "context": [
+        "view",
+        "embed",
+        "edit"
+      ],
+      "required": true
+    },
+    "slug": {
+      "description": "مُعرف أبجدي رقمي فريد من نوعه للعنصر.",
+      "type": "string",
+      "context": [
+        "view",
+        "embed",
+        "edit"
+      ]
+    },
+    "taxonomy": {
+      "description": "خاصية نوع العنصر.",
+      "type": "string",
+      "enum": [
+        "consultant_categories"
+      ],
+      "context": [
+        "view",
+        "embed",
+        "edit"
+      ],
+      "readonly": true
+    },
+    "parent": {
+      "description": "الرقم المُعرف للعنصر الأب.",
+      "type": "integer",
+      "context": [
+        "view",
+        "edit"
+      ]
+    },
+    "meta": {
+      "description": "الحقول الإضافية.",
+      "type": "object",
+      "context": [
+        "view",
+        "edit"
+      ],
+      "properties": []
+    }
+  },
+  "$id": "https://raw.githubusercontent.com/api-evangelist/labayh/refs/heads/main/json-schema/labayh-consultant-categories.json",
+  "x-source": "OPTIONS https://labayh.net/wp-json/wp/v2/consultant_categories",
+  "x-method": "searched",
+  "x-generated": "2026-07-19"
+}

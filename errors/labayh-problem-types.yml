@@ -1,0 +1,105 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/labayh-content-openapi.yml + observed live error responses from https://labayh.net/wp-json/
+format: wordpress-rest
+rfc9457: false
+description: >-
+  Labayh publishes no error reference. This catalog was derived from the OpenAPI description of
+  its WordPress REST surface and confirmed by provoking real error responses against the live
+  API. Errors are NOT RFC 9457 problem+json — they use the WordPress REST envelope, served as
+  application/json. Message strings are localised to the site language (Arabic by default), so
+  agents must branch on the `code` slug and never on `message` text.
+envelope:
+  content_type: application/json
+  fields:
+    code: Stable machine-readable error slug. The only field safe to branch on.
+    message: Human-readable message, localised (Arabic on the default locale).
+    data.status: The HTTP status code, repeated inside the body.
+    data.params: Present on validation failures — a map of parameter name to message.
+    data.details: Present on validation failures — per-parameter code and constraint detail.
+  example_observed: |-
+    {"code":"rest_invalid_param","message":"...","data":{"status":400,
+     "params":{"per_page":"per_page must be between 1 (inclusive) and 100 (inclusive)"},
+     "details":{"per_page":{"code":"rest_out_of_bounds", ...}}}}
+problems:
+- code: rest_invalid_param
+  status: 400
+  title: Invalid parameter
+  detail: >-
+    One or more query parameters failed validation. data.params names each offending parameter
+    and data.details carries the specific constraint code.
+  remediation: >-
+    Read data.params to find the failing parameter. Common cause is per_page above the maximum
+    of 100 — page the collection instead of raising per_page.
+  verified: observed
+  source_operation: openapi/labayh-content-openapi.yml#listConsultant
+- code: rest_out_of_bounds
+  status: 400
+  title: Parameter out of bounds
+  detail: A numeric parameter fell outside its allowed range. Appears nested in data.details.
+  remediation: Clamp the value to the documented range (per_page is 1-100).
+  verified: observed
+- code: rest_post_invalid_id
+  status: 404
+  title: Invalid post ID
+  detail: >-
+    No item exists with the supplied numeric identifier, or the item is not readable in the
+    requested context.
+  remediation: >-
+    Resolve identifiers by listing the collection or filtering by slug rather than guessing IDs.
+  verified: observed
+  source_operation: openapi/labayh-content-openapi.yml#getConsultant
+- code: rest_no_route
+  status: 404
+  title: No route matched
+  detail: The requested path and method are not registered in the API index.
+  remediation: >-
+    Re-read https://labayh.net/wp-json/ for the current route table; namespaces and custom post
+    types can change when the site's plugins change.
+  verified: derived
+- code: rest_cannot_create
+  status: 401
+  title: Not allowed to create
+  detail: >-
+    An unauthenticated or under-privileged caller attempted a POST to a collection. Returned for
+    every anonymous write attempt.
+  remediation: >-
+    Write access requires a WordPress application password. There is no public developer signup —
+    treat this API as read-only unless you hold site credentials.
+  verified: observed
+  source_operation: openapi/labayh-content-openapi.yml#createConsultant
+- code: rest_forbidden
+  status: 403
+  title: Forbidden
+  detail: >-
+    The authenticated user lacks the capability for this action, or a privileged context (
+    context=edit) was requested without sufficient rights.
+  remediation: Drop back to context=view, or use credentials with the required capability.
+  verified: derived
+- code: rest_forbidden_context
+  status: 403
+  title: Forbidden context
+  detail: context=edit was requested by a caller not permitted to edit the resource.
+  remediation: Use context=view or context=embed for anonymous reads.
+  verified: derived
+- code: rest_not_logged_in
+  status: 401
+  title: Authentication required
+  detail: The endpoint requires an authenticated user and no credentials were supplied.
+  remediation: Supply an application password via HTTP Basic, or an X-WP-Nonce for cookie auth.
+  verified: derived
+- code: rest_cannot_edit
+  status: 403
+  title: Not allowed to edit
+  detail: The authenticated user cannot modify the target resource.
+  verified: derived
+- code: rest_cannot_delete
+  status: 403
+  title: Not allowed to delete
+  detail: The authenticated user cannot delete the target resource.
+  verified: derived
+agent_guidance: >-
+  Branch on `code`, not `message` — messages arrive in Arabic on the default locale. Treat 401
+  and 403 as terminal for anonymous agents rather than retryable: the read surface is fully open
+  and no anonymous credential path exists. There is no idempotency key, so do not blind-retry a
+  POST that returned a 5xx.

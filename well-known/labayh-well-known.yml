@@ -1,0 +1,73 @@
+generated: '2026-07-19'
+method: searched
+source: live HTTP probes of the Labayh hosts
+description: >-
+  Labayh publishes no /.well-known/ discovery surface on either of its probed hosts — every
+  standard document returns 404. It does, however, publish a robots.txt carrying Cloudflare
+  Content-Signal directives, which is the only machine-readable consent surface the company
+  operates. Absence of the /.well-known/ documents is recorded data, not a gap in this probe.
+hosts:
+- host: https://labayh.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+- host: https://business.labayh.net
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 404
+consent_signals:
+- path: /robots.txt
+  url: https://labayh.net/robots.txt
+  status: 200
+  file: labayh-robots.txt
+  standard: Content-Signal
+  directives:
+    search: 'yes'
+    ai-train: 'no'
+    use: reference
+  applies_to: 'User-agent: *'
+  disallowed_agents:
+  - Amazonbot
+  - Applebot-Extended
+  - Bytespider
+  - Google-Extended
+  - GPTBot
+  - meta-externalagent
+  note: >-
+    Cloudflare-managed Content-Signal block. Labayh permits search indexing and reference use,
+    and reserves rights against AI training; six AI training crawlers are disallowed outright.
+    The block cites Article 4 of EU Directive 2019/790 as an express reservation of rights.
+    Agents consuming this API should honour the ai-train=no signal.
+- path: /sitemap_index.xml
+  url: https://labayh.net/sitemap_index.xml
+  status: 200
+  standard: sitemap
+  note: Sitemap index declared by robots.txt. /sitemap.xml itself returns 404.
+api_discovery:
+- path: /wp-json/
+  url: https://labayh.net/wp-json/
+  status: 200
+  note: >-
+    The WordPress REST API index is Labayh's de facto machine-readable API discovery document.
+    It advertises 15 namespaces, 258 routes and the supported authentication methods.
+    Captured as openapi/labayh-content-openapi.yml.

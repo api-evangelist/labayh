@@ -1,0 +1,89 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/labayh-content-openapi.yml + live probes
+description: >-
+  Which cross-cutting standards the Labayh API actually conforms to, derived from its OpenAPI
+  description and confirmed against live responses. Labayh makes no published compliance or
+  certification claims in machine-readable or textual form on its public site, so no Compliance
+  pointer is emitted — only the standards evidenced below.
+standards:
+- id: openapi
+  conforms: true
+  evidence: >-
+    Not published by Labayh; derived by API Evangelist as openapi/labayh-content-openapi.yml
+    (OpenAPI 3.1.0) from the server's own discovery index and OPTIONS schemas.
+  first_party: false
+- id: rest
+  conforms: true
+  evidence: Resource-oriented paths, correct GET/POST/PATCH/DELETE semantics, JSON payloads.
+- id: json-schema
+  conforms: true
+  evidence: >-
+    Every route publishes a JSON Schema for its item representation and its arguments via an
+    OPTIONS request; captured under json-schema/.
+- id: http-basic-auth
+  conforms: true
+  evidence: >-
+    WordPress application passwords over HTTP Basic, advertised by the API index at
+    https://labayh.net/wp-json/.
+- id: rfc5988-web-linking
+  conforms: true
+  evidence: >-
+    Collection responses emit Link headers with rel="prev" and rel="next"; observed on
+    /wp/v2/consultant?per_page=2&page=2.
+- id: hal-style-hypermedia
+  conforms: partial
+  evidence: >-
+    Items carry a _links object with self/collection/about/author/wp:term relations. This is
+    WordPress's own convention rather than formal HAL — the media type is application/json,
+    not application/hal+json.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use the WordPress {code, message, data.status} envelope served as application/json,
+    not application/problem+json. See errors/labayh-problem-types.yml.
+- id: oauth2
+  conforms: false
+  evidence: No oauth2 security scheme is declared and no OAuth flow is documented.
+- id: openid-connect
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on every probed host.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404 on every probed host.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation headers observed; no deprecation policy published.
+- id: asyncapi
+  conforms: false
+  evidence: >-
+    No event, streaming or webhook surface is exposed or documented. Not applicable to this
+    provider rather than a gap.
+- id: content-signal
+  conforms: true
+  evidence: >-
+    robots.txt carries a Cloudflare Content-Signal block (search=yes, ai-train=no,
+    use=reference) with six AI training crawlers disallowed, citing Article 4 of EU Directive
+    2019/790. Captured verbatim as well-known/labayh-robots.txt.
+- id: tls-1-3
+  conforms: true
+  evidence: TLSv1.3 negotiated on labayh.net. See security/labayh-domain-security.yml.
+- id: hsts
+  conforms: false
+  evidence: No Strict-Transport-Security header observed on labayh.net.
+- id: dnssec
+  conforms: false
+  evidence: DNSSEC not enabled for labayh.net.
+- id: dmarc
+  conforms: partial
+  evidence: >-
+    A DMARC record exists but the policy is p=none, which monitors rather than enforces. SPF is
+    present. No CAA records are published.
+regulatory_context:
+  note: >-
+    Labayh is a licensed Saudi tele-mental-health provider and its site displays a Saudi Ministry
+    of Health badge as an image. No machine-readable certification, licence number, trust centre
+    or compliance page was found in the page text, so no certification is asserted here and no
+    Compliance pointer is emitted. Health-data regimes (Saudi PDPL, NPHIES/SEHA interoperability,
+    HIPAA) are relevant to the business but Labayh publishes no conformance claim against them.
+  verified_certifications: []

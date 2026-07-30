@@ -1,0 +1,49 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/labayh-content-openapi.yml
+description: >-
+  Packaged Agent Skills for the Labayh Content API. Every step is grounded in an operationId that
+  exists verbatim in openapi/labayh-content-openapi.yml, and every convention was verified against
+  live responses. All three skills cover the anonymous READ surface only — writes require
+  WordPress site credentials no third party holds, so no write skill is published. Each skill
+  carries the same two guardrails: honour the site's ai-train=no Content-Signal, and escalate to
+  emergency services on any disclosure of crisis, since this is a mental-health provider.
+skills:
+- file: labayh-find-consultant.md
+  name: Find a Labayh consultant by specialty
+  summary: >-
+    Resolve a described need against the 255-term specialty taxonomy, then list and read
+    consultant profiles from the 875-specialist directory.
+  api: openapi/labayh-content-openapi.yml
+  operations:
+  - listConsultantCategories
+  - listConsultant
+  - getConsultant
+- file: labayh-browse-programs.md
+  name: Browse Labayh therapeutic programs and support groups
+  summary: >-
+    Enumerate and compare the therapeutic programs, peer support groups and recorded webinars,
+    joined to their category taxonomies.
+  api: openapi/labayh-content-openapi.yml
+  operations:
+  - listProgram
+  - getProgram
+  - listProgramCategories
+  - listSupportGroup
+  - getSupportGroup
+  - listSupportGroupCategories
+  - listRecordedWebinar
+  - listLiveWebinar
+- file: labayh-search-content.md
+  name: Search Labayh editorial mental-health content
+  summary: >-
+    Search and cite the 2,162-article Arabic-first mental-health library across 39 categories and
+    95 tags, respecting the site's content-signal restrictions.
+  api: openapi/labayh-content-openapi.yml
+  operations:
+  - listSearch
+  - listPosts
+  - getPost
+  - listCategories
+  - listTags
+  - getApiIndex

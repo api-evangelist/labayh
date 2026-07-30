@@ -1,0 +1,46 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Labayh Content API
+  version: 1.0.0
+extends: openapi/labayh-content-openapi.yml
+x-generated: '2026-07-19'
+x-method: generated
+actions:
+- target: $.info
+  description: 'Record provenance: Labayh publishes no OpenAPI; this description was derived.'
+  update:
+    x-apievangelist-derived: true
+    x-apievangelist-source: https://labayh.net/wp-json/
+    x-apievangelist-artifacts:
+      conventions: conventions/labayh-conventions.yml
+      errors: errors/labayh-problem-types.yml
+      data-model: data-model/labayh-data-model.yml
+      lifecycle: lifecycle/labayh-lifecycle.yml
+      agentic-access: agentic-access/labayh-agentic-access.yml
+- target: $.info
+  description: Flag the absence of a developer contract governing this surface.
+  update:
+    x-apievangelist-advisory: This is the content backend of Labayh's marketing site, not a published
+      product API. There is no developer portal, no terms governing API use, no rate-limit contract and
+      no stability guarantee. Read operations are anonymous; treat the surface as read-only.
+- target: $.info
+  description: Carry the site's declared AI-training restriction into the spec.
+  update:
+    x-apievangelist-content-signal:
+      search: 'yes'
+      ai-train: 'no'
+      use: reference
+      source: https://labayh.net/robots.txt
+      note: Labayh reserves rights against AI training under Article 4 of EU Directive 2019/790. Honour
+        this when ingesting content responses.
+- target: $.paths['/wp/v2/consultant'].get
+  description: Mark the consultant directory as the marquee read operation.
+  update:
+    x-apievangelist-marquee: true
+    x-apievangelist-note: The consultant directory is the highest-value surface here — 875 licensed specialists
+      filterable by the 255-term consultant_categories taxonomy.
+- target: $.components.securitySchemes.applicationPassword
+  description: Clarify that there is no public credential path.
+  update:
+    x-apievangelist-note: Credentials belong to WordPress users of labayh.net. There is no developer signup,
+      so third-party integrations are limited to the anonymous read surface.

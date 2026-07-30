@@ -1,0 +1,69 @@
+generated: '2026-07-19'
+method: searched
+source: https://labayh.net/wp-json/ + https://status.labayh.net/ + site probes
+description: >-
+  Labayh operates no developer programme, so there is no published versioning policy, deprecation
+  policy, SLA or changelog. What it does operate is a branded public status page. Everything below
+  is either observed on the live API or recorded as absent — nothing is assumed.
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  policy_url: null
+  note: >-
+    The version is the namespace segment following /wp-json (e.g. /wp-json/wp/v2/consultant). The
+    version moves with the site's WordPress core version rather than with any Labayh release
+    train. A site-specific consultants/v1 namespace is also registered.
+  namespaces_observed:
+  - wp/v2
+  - consultants/v1
+  - contact-form-7/v1
+  - mc4wp/v1
+  - oembed/1.0
+  - batch/v1
+  - wp-site-health/v1
+  - wp-block-editor/v1
+  - wp-abilities/v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No RFC 8594 Sunset or Deprecation headers were observed and no deprecation policy is
+    published. Because the route table is generated from the site's active plugins and custom
+    post types, endpoints can appear or disappear without notice. Consumers should re-read the
+    discovery index at https://labayh.net/wp-json/ rather than pinning to a cached route list.
+    No Deprecation pointer is emitted for this provider.
+deprecated_operations: []
+sla:
+  url: null
+  uptime_target: null
+  note: No service level agreement is published for the API or the consumer platform.
+status_page:
+  url: https://status.labayh.net/
+  status: 200
+  title: Labayh for Healthcare
+  platform: Freshstatus
+  subscribable: true
+  components_listed: 0
+  note: >-
+    A genuine first-party, Labayh-branded status page with email subscription. At probe time it
+    listed no individual service components ("There are no services listed here"), so it can
+    announce incidents but does not currently expose per-service health. It covers the Labayh
+    for Healthcare platform, not the WordPress content API specifically.
+changelog:
+  url: null
+  note: >-
+    No dated changelog is published for the platform or the API. The blog at
+    https://labayh.net/en/blog/ is editorial mental-health content, not release notes, so no
+    ChangeLog pointer is emitted.
+support:
+  contact_page: https://labayh.net/en/contact-us/
+  email: Info@labayh.net
+  phone: '920031893'
+maturity:
+  api_program: none
+  assessment: >-
+    Labayh is a mental-health service company, not an API provider. The API surface catalogued
+    here is the content backend of its marketing site, incidentally public and genuinely useful
+    for discovering the consultant directory and programme catalogue, but it carries no developer
+    contract, no terms governing API use, and no stability guarantee.

@@ -1,0 +1,26 @@
+{
+  "provider": "labayh",
+  "sources": [
+    "labayh-consultants-api-openapi.yml",
+    "labayh-content-api-openapi.yml",
+    "labayh-events-api-openapi.yml",
+    "labayh-meta-api-openapi.yml",
+    "labayh-programs-api-openapi.yml",
+    "labayh-support-groups-api-openapi.yml",
+    "labayh-webinars-api-openapi.yml"
+  ],
+  "outputs": [
+    "labayh-consultants-api-openapi.yml",
+    "labayh-content-api-openapi.yml",
+    "labayh-events-api-openapi.yml",
+    "labayh-meta-api-openapi.yml",
+    "labayh-programs-api-openapi.yml",
+    "labayh-support-groups-api-openapi.yml",
+    "labayh-webinars-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

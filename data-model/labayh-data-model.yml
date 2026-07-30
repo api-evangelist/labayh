@@ -1,0 +1,577 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/labayh-content-openapi.yml + OPTIONS schemas from https://labayh.net/wp-json/
+description: 'Entity-relationship graph for the Labayh Content API, derived from the OpenAPI schemas and
+  the taxonomy registrations observed on the live site. The graph has two halves: a domain half (consultants,
+  programmes, support groups, webinars and their specialty taxonomies) that is specific to Labayh''s mental-health
+  catalogue, and a generic publishing half (posts, pages, media, comments, users) inherited from WordPress.
+  Every content entity follows the same shape — integer id, slug, title/content/excerpt rendered objects,
+  featured_media pointer, and an array of taxonomy term ids.'
+conventions:
+  identifier: Integer `id`, unique per content type. `slug` is a stable human-readable alternate key.
+  rendered_fields: 'title, content and excerpt are objects of the form {rendered: ''<html>''}, not plain
+    strings. Agents must read .rendered and strip HTML.'
+  traversal: Relationships are expressed as bare integer IDs plus a _links object. Pass _embed on a request
+    to inline featured media, author and taxonomy terms in one round trip instead of following each id.
+  no_join: There is no server-side join or expansion beyond _embed; deep graphs need N+1 calls.
+entities:
+- name: Consultant
+  resource: consultant
+  collection: /wp/v2/consultant
+  item: /wp/v2/consultant/{id}
+  description: A licensed psychologist, psychiatrist or family counsellor listed in the Labayh directory.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 875
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: ConsultantCategory
+  resource: consultant_categories
+  collection: /wp/v2/consultant_categories
+  item: /wp/v2/consultant_categories/{id}
+  description: A specialty term used to classify consultants (e.g. anxiety, family therapy).
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  observed_count: 255
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: Program
+  resource: program
+  collection: /wp/v2/program
+  item: /wp/v2/program/{id}
+  description: A structured multi-session therapeutic programme.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 10
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: ProgramCategory
+  resource: program_categories
+  collection: /wp/v2/program_categories
+  item: /wp/v2/program_categories/{id}
+  description: A category term classifying therapeutic programmes.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: SupportGroup
+  resource: support_group
+  collection: /wp/v2/support_group
+  item: /wp/v2/support_group/{id}
+  description: A peer support group offering.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 12
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: SupportGroupCategory
+  resource: support_group_categories
+  collection: /wp/v2/support_group_categories
+  item: /wp/v2/support_group_categories/{id}
+  description: A category term classifying support groups.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: RecordedWebinar
+  resource: recorded_webinar
+  collection: /wp/v2/recorded_webinar
+  item: /wp/v2/recorded_webinar/{id}
+  description: A recorded webinar session available on demand.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 33
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: RecordedWebinarCategory
+  resource: recorded_webinar_categories
+  collection: /wp/v2/recorded_webinar_categories
+  item: /wp/v2/recorded_webinar_categories/{id}
+  description: A category term classifying recorded webinars.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: LiveWebinar
+  resource: live_webinar
+  collection: /wp/v2/live_webinar
+  item: /wp/v2/live_webinar/{id}
+  description: A scheduled live webinar session. Empty at capture time.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 0
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: LiveWebinarCategory
+  resource: live_webinar_categories
+  collection: /wp/v2/live_webinar_categories
+  item: /wp/v2/live_webinar_categories/{id}
+  description: A category term classifying live webinars.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: Event
+  resource: event
+  collection: /wp/v2/event
+  item: /wp/v2/event/{id}
+  description: An event published by Labayh. Empty at capture time.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 23
+  observed_count: 0
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: EventCategory
+  resource: event_categories
+  collection: /wp/v2/event_categories
+  item: /wp/v2/event_categories/{id}
+  description: A category term classifying events.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: Post
+  resource: posts
+  collection: /wp/v2/posts
+  item: /wp/v2/posts/{id}
+  description: A blog article published on labayh.net.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 27
+  observed_count: 2162
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - meta
+- name: Page
+  resource: pages
+  collection: /wp/v2/pages
+  item: /wp/v2/pages/{id}
+  description: A static page on labayh.net.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 25
+  key_properties:
+  - id
+  - slug
+  - title
+  - content
+  - excerpt
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - parent
+  - menu_order
+  - meta
+- name: Category
+  resource: categories
+  collection: /wp/v2/categories
+  item: /wp/v2/categories/{id}
+  description: A blog category term.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 9
+  observed_count: 39
+  key_properties:
+  - id
+  - slug
+  - link
+  - parent
+  - meta
+- name: Tag
+  resource: tags
+  collection: /wp/v2/tags
+  item: /wp/v2/tags/{id}
+  description: A blog tag term.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 8
+  observed_count: 95
+  key_properties:
+  - id
+  - slug
+  - link
+  - meta
+- name: MediaItem
+  resource: media
+  collection: /wp/v2/media
+  item: /wp/v2/media/{id}
+  description: An uploaded media item — consultant portraits, programme artwork, article imagery.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 32
+  observed_count: 3565
+  key_properties:
+  - id
+  - slug
+  - title
+  - featured_media
+  - date
+  - modified
+  - link
+  - status
+  - meta
+- name: Comment
+  resource: comments
+  collection: /wp/v2/comments
+  item: /wp/v2/comments/{id}
+  description: A comment on a published article.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 17
+  key_properties:
+  - id
+  - content
+  - date
+  - link
+  - status
+  - parent
+  - meta
+- name: User
+  resource: users
+  collection: /wp/v2/users
+  item: /wp/v2/users/{id}
+  description: A public author profile.
+  identifier: id (integer) — also addressable by the human-readable `slug`.
+  property_count: 19
+  key_properties:
+  - id
+  - slug
+  - link
+  - meta
+relationships:
+- from: Consultant
+  to: ConsultantCategory
+  type: has_many
+  via: consultant_categories
+  description: Consultant carries an array of ConsultantCategory term IDs in its `consultant_categories`
+    property, and the collection can be filtered by ?consultant_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Consultant
+- from: ConsultantCategory
+  to: Consultant
+  type: has_many
+  via: ?consultant_categories=<term_id>
+  description: A ConsultantCategory groups Consultant items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: Consultant
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: Consultant.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Consultant
+- from: Consultant
+  to: Consultant
+  type: belongs_to
+  via: parent
+  description: Consultant.parent references another Consultant id, forming a hierarchy (0 when there is
+    no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Consultant
+- from: Program
+  to: ProgramCategory
+  type: has_many
+  via: program_categories
+  description: Program carries an array of ProgramCategory term IDs in its `program_categories` property,
+    and the collection can be filtered by ?program_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Program
+- from: ProgramCategory
+  to: Program
+  type: has_many
+  via: ?program_categories=<term_id>
+  description: A ProgramCategory groups Program items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: Program
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: Program.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Program
+- from: Program
+  to: Program
+  type: belongs_to
+  via: parent
+  description: Program.parent references another Program id, forming a hierarchy (0 when there is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Program
+- from: SupportGroup
+  to: SupportGroupCategory
+  type: has_many
+  via: support_group_categories
+  description: SupportGroup carries an array of SupportGroupCategory term IDs in its `support_group_categories`
+    property, and the collection can be filtered by ?support_group_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/SupportGroup
+- from: SupportGroupCategory
+  to: SupportGroup
+  type: has_many
+  via: ?support_group_categories=<term_id>
+  description: A SupportGroupCategory groups SupportGroup items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: SupportGroup
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: SupportGroup.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/SupportGroup
+- from: SupportGroup
+  to: SupportGroup
+  type: belongs_to
+  via: parent
+  description: SupportGroup.parent references another SupportGroup id, forming a hierarchy (0 when there
+    is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/SupportGroup
+- from: RecordedWebinar
+  to: RecordedWebinarCategory
+  type: has_many
+  via: recorded_webinar_categories
+  description: RecordedWebinar carries an array of RecordedWebinarCategory term IDs in its `recorded_webinar_categories`
+    property, and the collection can be filtered by ?recorded_webinar_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/RecordedWebinar
+- from: RecordedWebinarCategory
+  to: RecordedWebinar
+  type: has_many
+  via: ?recorded_webinar_categories=<term_id>
+  description: A RecordedWebinarCategory groups RecordedWebinar items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: RecordedWebinar
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: RecordedWebinar.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/RecordedWebinar
+- from: RecordedWebinar
+  to: RecordedWebinar
+  type: belongs_to
+  via: parent
+  description: RecordedWebinar.parent references another RecordedWebinar id, forming a hierarchy (0 when
+    there is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/RecordedWebinar
+- from: LiveWebinar
+  to: LiveWebinarCategory
+  type: has_many
+  via: live_webinar_categories
+  description: LiveWebinar carries an array of LiveWebinarCategory term IDs in its `live_webinar_categories`
+    property, and the collection can be filtered by ?live_webinar_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/LiveWebinar
+- from: LiveWebinarCategory
+  to: LiveWebinar
+  type: has_many
+  via: ?live_webinar_categories=<term_id>
+  description: A LiveWebinarCategory groups LiveWebinar items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: LiveWebinar
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: LiveWebinar.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/LiveWebinar
+- from: LiveWebinar
+  to: LiveWebinar
+  type: belongs_to
+  via: parent
+  description: LiveWebinar.parent references another LiveWebinar id, forming a hierarchy (0 when there
+    is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/LiveWebinar
+- from: Event
+  to: EventCategory
+  type: has_many
+  via: event_categories
+  description: Event carries an array of EventCategory term IDs in its `event_categories` property, and
+    the collection can be filtered by ?event_categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Event
+- from: EventCategory
+  to: Event
+  type: has_many
+  via: ?event_categories=<term_id>
+  description: A EventCategory groups Event items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: Event
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: Event.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Event
+- from: Event
+  to: Event
+  type: belongs_to
+  via: parent
+  description: Event.parent references another Event id, forming a hierarchy (0 when there is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Event
+- from: Post
+  to: Category
+  type: has_many
+  via: categories
+  description: Post carries an array of Category term IDs in its `categories` property, and the collection
+    can be filtered by ?categories=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Post
+- from: Category
+  to: Post
+  type: has_many
+  via: ?categories=<term_id>
+  description: A Category groups Post items; traverse via the collection filter.
+  evidence: live query parameter on the collection endpoint
+- from: Post
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: Post.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Post
+- from: Page
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: Page.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Page
+- from: Page
+  to: Page
+  type: belongs_to
+  via: parent
+  description: Page.parent references another Page id, forming a hierarchy (0 when there is no parent).
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Page
+- from: MediaItem
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  description: MediaItem.featured_media holds the MediaItem id; use _embed to inline it.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/MediaItem
+- from: Post
+  to: User
+  type: belongs_to
+  via: author
+  description: Post.author holds the User id of the article author.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Post
+- from: Post
+  to: Tag
+  type: has_many
+  via: tags
+  description: Post.tags is an array of Tag term IDs; filter with ?tags=<term_id>.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Post
+- from: Comment
+  to: Post
+  type: belongs_to
+  via: post
+  description: Comment.post references the Post it belongs to.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Comment
+- from: Comment
+  to: Comment
+  type: belongs_to
+  via: parent
+  description: Threaded replies reference their parent Comment.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Comment
+- from: Category
+  to: Category
+  type: belongs_to
+  via: parent
+  description: Categories are hierarchical.
+  evidence: openapi/labayh-content-openapi.yml#/components/schemas/Category
+core_traversal_examples:
+- goal: List consultants in a given specialty
+  steps:
+  - GET /wp/v2/consultant_categories?per_page=100 — find the term id
+  - GET /wp/v2/consultant?consultant_categories=<term_id>&_embed
+- goal: Render a consultant card with portrait
+  steps:
+  - GET /wp/v2/consultant/{id}?_embed
+  - Read _embedded['wp:featuredmedia'][0].source_url for the portrait
+- goal: Browse therapeutic programmes
+  steps:
+  - GET /wp/v2/program?per_page=10&_embed
+  - GET /wp/v2/program_categories to label them
+render: null

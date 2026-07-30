@@ -1,0 +1,96 @@
+[
+  {
+    "id": 175510,
+    "date": "2025-10-15T09:17:48",
+    "date_gmt": "2025-10-15T09:17:47",
+    "guid": {
+      "rendered": "https://labayh.net/programs/emotional-attachment-recovery/"
+    },
+    "modified": "2026-07-17T16:14:39",
+    "modified_gmt": "2026-07-17T16:14:39",
+    "slug": "emotional-attachment-recovery",
+    "status": "publish",
+    "type": "program",
+    "link": "https://labayh.net/ar/programs/emotional-attachment-recovery/",
+    "title": {
+      "rendered": "برنامج التعافي من التعلق العاطفي"
+    },
+    "content": {
+      "rendered": "<div class=\"about-program-content-wrap\">\n<div class=\"about-program-content\">صُمم هذا البرنامج العلاجي لفهم أنماط التعلّق العاطفي والعلاقة بين الفكر، الشعور، والسلوك، من خلال رحلة تبدأ ببناء الأمان النفسي واستيعاب جذور التعلّق، مرورًا بتدريبات عملية على إعادة الهيكلة المعرفية (CBT)، وتنتهي بخطة عملية لتعزيز الاستقلال العاطفي واستمرار التوازن النفسي. يتم ذلك في بيئة مهنية تراعي الخصوصية وتضمن السرّية التامة</div>\n</div>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>صُمم هذا البرنامج العلاجي لفهم أنماط التعلّق العاطفي والعلاقة بين الفكر، الشعور، والسلوك، من خلال رحلة تبدأ ببناء الأمان النفسي واستيعاب جذور التعلّق، مرورًا بتدريبات عملية على إعادة الهيكلة المعرفية (CBT)، وتنتهي بخطة عملية لتعزيز الاستقلال العاطفي واستمرار التوازن النفسي. يتم ذلك في بيئة مهنية تراعي الخصوصية وتضمن السرّية التامة</p>\n",
+      "protected": false
+    },
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "template": "",
+    "meta": {
+      "footnotes": ""
+    },
+    "program_categories": [],
+    "class_list": [
+      "post-175510",
+      "program",
+      "type-program",
+      "status-publish",
+      "hentry",
+      "entry"
+    ],
+    "_links": {
+      "self": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/program/175510",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/program"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/types/program"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://labayh.net/ar/wp-json/wp/v2/program/175510/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 175520,
+          "href": "https://labayh.net/ar/wp-json/wp/v2/program/175510/revisions/175520"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://labayh.net/ar/wp-json/wp/v2/media?parent=175510"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "program_categories",
+          "embeddable": true,
+          "href": "https://labayh.net/ar/wp-json/wp/v2/program_categories?post=175510"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]
