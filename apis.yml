@@ -1,20 +1,166 @@
 aid: labayh
 name: Labayh
-description: Labayh is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Labayh (لبيه) is a Saudi Arabian digital mental-health platform delivering online psychological,
+  psychiatric and family counselling to the Arabic-speaking Gulf market. Patients book scheduled or
+  instant video and audio sessions with more than 1,000 licensed specialists, and can also enrol in
+  structured therapeutic programs for depression, anxiety, OCD and social phobia, join peer support
+  groups, take psychological assessments, track mood daily, and watch live and recorded webinars.
+  The company reports over 70 million minutes of consultation delivered. Alongside the consumer app
+  it runs Labayh Business, a corporate employee-wellbeing arm, and Labayh Academy, a training
+  platform for practitioners. Labayh is backed by 500 Global. It operates no developer program and
+  publishes no OpenAPI, SDKs or developer portal; the API catalogued here is the anonymously
+  readable WordPress REST surface behind labayh.net, whose OpenAPI description API Evangelist
+  derived from the server's own discovery document.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://labayh.net/wp-content/themes/labayh/assets/images/logo/labayh-logo.svg
 url: https://raw.githubusercontent.com/api-evangelist/labayh/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - 500-global
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: live-api-surface-derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Mental Health
+- Healthcare
+- Telehealth
+- Therapy
+- Wellbeing
+- Content
+- Saudi Arabia
+- Middle East
+- Arabic
+apis:
+- aid: labayh:labayh-consultants-api
+  name: Labayh Consultants API
+  description: >-
+    Licensed psychologists, psychiatrists and family counsellors listed on Labayh, and the specialty taxonomy
+    used to classify them.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Consultants
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-consultants-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-content-api
+  name: Labayh Content API
+  description: Blog articles, pages, media, taxonomy terms, comments and author profiles.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Content
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-content-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-events-api
+  name: Labayh Events API
+  description: Events published by Labayh and their categories.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-events-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-meta-api
+  name: Labayh Meta API
+  description: Discovery, registered types, taxonomies, statuses and cross-content search.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Meta
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-meta-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-programs-api
+  name: Labayh Programs API
+  description: Structured therapeutic programs and their categories.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Programs
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-programs-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-support-groups-api
+  name: Labayh Support Groups API
+  description: Peer support group offerings and their categories.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Support Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-support-groups-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
+- aid: labayh:labayh-webinars-api
+  name: Labayh Webinars API
+  description: Live and recorded webinar sessions and their categories.
+  humanURL: https://labayh.net/wp-json/
+  baseURL: https://labayh.net/wp-json
+  tags:
+  - Webinars
+  properties:
+  - type: OpenAPI
+    url: openapi/labayh-webinars-api-openapi.yml
+  - type: Examples
+    url: examples/
+  - type: JSONSchema
+    url: json-schema/labayh-consultant.json
+  - type: DataModel
+    url: data-model/labayh-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +169,55 @@ maintainers:
 common:
 - type: Website
   url: https://labayh.net
+- type: Support
+  url: https://labayh.net/en/contact-us/
+- type: Blog
+  url: https://labayh.net/en/blog/
+- type: BlogRSS
+  url: https://labayh.net/en/feed/
+- type: Login
+  url: https://client.labayh.net/login
+- type: TermsOfService
+  url: https://labayh.net/en/terms-conditions/
+- type: PrivacyPolicy
+  url: https://labayh.net/en/privacy-policy/
+- type: StatusPage
+  url: https://status.labayh.net/
+- type: Lifecycle
+  url: lifecycle/labayh-lifecycle.yml
+- type: Authentication
+  url: authentication/labayh-authentication.yml
+- type: Conventions
+  url: conventions/labayh-conventions.yml
+- type: ErrorCatalog
+  url: errors/labayh-problem-types.yml
+- type: Conformance
+  url: conformance/labayh-conformance.yml
+- type: DataModel
+  url: data-model/labayh-data-model.yml
+- type: WellKnown
+  url: well-known/labayh-well-known.yml
+- type: ContentSignal
+  url: well-known/labayh-robots.txt
+- type: DomainSecurity
+  url: security/labayh-domain-security.yml
+- type: AgenticAccess
+  url: agentic-access/labayh-agentic-access.yml
+- type: MCPServer
+  url: mcp/labayh-mcp.yml
+- type: LLMsTxt
+  url: llms/labayh-llms.txt
+- type: AgentSkill
+  name: Find a Labayh consultant by specialty
+  url: skills/labayh-find-consultant.md
+- type: AgentSkill
+  name: Browse Labayh therapeutic programs and support groups
+  url: skills/labayh-browse-programs.md
+- type: AgentSkill
+  name: Search Labayh editorial mental-health content
+  url: skills/labayh-search-content.md
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
