@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Labayh Content Consultants Meta API",
+    "version": "wp/v2"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://labayh.net/wp-json/wp/v2/types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+              }
+            ]
+          },
+          "docs": "Registered content types."
+        },
+        {
+          "info": {
+            "name": "List taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://labayh.net/wp-json/wp/v2/taxonomies",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "حصر النتائج على الفئات المرتبطة مع نوع محتوى مُعين."
+              }
+            ]
+          },
+          "docs": "Registered taxonomies."
+        },
+        {
+          "info": {
+            "name": "List statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://labayh.net/wp-json/wp/v2/statuses",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+              }
+            ]
+          },
+          "docs": "Registered content statuses."
+        },
+        {
+          "info": {
+            "name": "List search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://labayh.net/wp-json/wp/v2/search",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "تأكد أن النتيجة تستثني معرِّفات معينة."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "حصر النتائج على مُعرفات مُعينة."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "الصفحة الحالية للمجموعة."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "العدد الأقصى للعناصر ليتم إرجاعه في النتائج."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "حصر النتائج على مطابقة سلسلة نصية."
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "حصر النتائج على العناصر لواحد أو أكثر من أنواع الكائن الفرعية."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "حصر النتائج على العناصر من نوع الكائن."
+              }
+            ]
+          },
+          "docs": "Cross-content search."
+        },
+        {
+          "info": {
+            "name": "Retrieve the API discovery index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://labayh.net/wp-json/"
+          },
+          "docs": "Returns site metadata, the registered namespaces, the supported authentication methods, and the full route table."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -196,3 +196,9 @@ suggested_prompts:
 - Find Labayh consultants specialising in a given condition
 - Summarise the therapeutic programmes Labayh offers
 - List the support groups currently open
+deployment:
+  mode: none
+  verified: derived
+  tools: 44
+  checked: '2026-08-12'
+  source: catalog MCP census

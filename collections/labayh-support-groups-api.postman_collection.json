@@ -1,0 +1,2795 @@
+{
+  "item": [
+    {
+      "id": "ef42453e-6c80-47a0-98ca-a3b8366a0eba",
+      "name": "Support Groups",
+      "description": {
+        "content": "Peer support group offerings and their categories.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b297271f-f9d9-4661-b85f-344e2bd70d2e",
+          "name": "List support group",
+          "request": {
+            "name": "List support group",
+            "description": {
+              "content": "Peer support group offerings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "حصر الرد على المقالات المنشورة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "حصر الرد على المقالات المنشورة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601."
+                },
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+                },
+                {
+                  "disabled": false,
+                  "key": "menu_order",
+                  "value": "<integer>",
+                  "description": "حصر النتيجة على مقالات مع قيمة menu_order مُعينة."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "حصر الرد على المقالات المعدلة بعد تاريخ مُعطى ومتوافق مع معيار ISO8601."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "حصر الرد على المقالات المعدلة قبل تاريخ مُعطى ومتوافق مع معيار ISO8601."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "تخطي النتائج برقم محدد من العناصر."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "خاصية الترتيب إما تصاعدي أو تنازلي."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "فرز المجموعة حسب خاصية المقالة."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "الصفحة الحالية للمجموعة."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "العدد الأقصى للعناصر ليتم إرجاعه في النتائج."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "حصر النتائج على مطابقة سلسلة نصية."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_semantics",
+                  "value": "<string>",
+                  "description": "كيفية تفسير مدخلات البحث."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "حصر النتيجة على مقالات مع اسم أو عدة أسماء لطيفة مُعينة."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "publish",
+                  "description": "حصر النتيجة على المقالات المُسندة لحالة واحدة أو أكثر."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "string",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "true",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "string",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "string",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "true",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "key_2",
+                  "value": "string",
+                  "description": "حصر النتائج على العناصر التي ﻻ تمتلك عناصر مُعينة مسندة في الفئة support_group_categories."
+                },
+                {
+                  "disabled": false,
+                  "key": "tax_relation",
+                  "value": "<string>",
+                  "description": "حصر النتائج بناءً على العلاقة بين عدة فئات."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14a32531-3f2e-43f6-9744-e24f9034a9a4",
+              "name": "A page of support group.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "false"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "string"
+                    },
+                    {
+                      "key": "key_2",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key_3",
+                      "value": "444"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "false"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "string"
+                    },
+                    {
+                      "key": "key_2",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key_3",
+                      "value": "444"
+                    },
+                    {
+                      "key": "tax_relation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of matching items.",
+                  "key": "X-WP-Total",
+                  "value": "7734"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages available.",
+                  "key": "X-WP-TotalPages",
+                  "value": "7734"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"date\": \"2015-05-26T21:52:34.465Z\",\n    \"date_gmt\": \"1957-06-03T03:40:46.443Z\",\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 3529,\n    \"link\": \"http://SotTEhVSKkHbIhRsCEqjitqTyy.jvoUJz6po,9CBtouytI2dxWy\",\n    \"modified\": \"1963-04-02T18:35:32.539Z\",\n    \"modified_gmt\": \"2020-01-25T22:15:08.260Z\",\n    \"slug\": \"string\",\n    \"status\": \"private\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parent\": 8435,\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 1350,\n      \"protected\": false\n    },\n    \"excerpt\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"protected\": false\n    },\n    \"featured_media\": 9778,\n    \"menu_order\": 8057,\n    \"meta\": {\n      \"footnotes\": \"string\"\n    },\n    \"template\": \"string\",\n    \"support_group_categories\": [\n      9350,\n      379\n    ]\n  },\n  {\n    \"date\": \"1999-08-22T21:45:40.941Z\",\n    \"date_gmt\": \"1972-11-19T23:06:31.622Z\",\n    \"guid\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"id\": 3568,\n    \"link\": \"http://LVAtnXLaNBcUvUIVWG.ryLU9c9QB4SbQblO28,OK---0pqpgJbzn23vtxoKtuhgxnu+pkBJhsvZa\",\n    \"modified\": \"2015-03-08T07:03:09.763Z\",\n    \"modified_gmt\": \"1990-01-11T23:16:54.809Z\",\n    \"slug\": \"string\",\n    \"status\": \"publish\",\n    \"type\": \"string\",\n    \"password\": \"string\",\n    \"permalink_template\": \"string\",\n    \"generated_slug\": \"string\",\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"parent\": 8153,\n    \"title\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"block_version\": 1073,\n      \"protected\": true\n    },\n    \"excerpt\": {\n      \"raw\": \"string\",\n      \"rendered\": \"string\",\n      \"protected\": false\n    },\n    \"featured_media\": 4931,\n    \"menu_order\": 251,\n    \"meta\": {\n      \"footnotes\": \"string\"\n    },\n    \"template\": \"string\",\n    \"support_group_categories\": [\n      1955,\n      235\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59eeaba4-a3e4-450c-bd3b-066aa203d0a4",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "false"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "string"
+                    },
+                    {
+                      "key": "key_2",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key_3",
+                      "value": "444"
+                    },
+                    {
+                      "key": "key_0",
+                      "value": "false"
+                    },
+                    {
+                      "key": "key_1",
+                      "value": "string"
+                    },
+                    {
+                      "key": "key_2",
+                      "value": "true"
+                    },
+                    {
+                      "key": "key_3",
+                      "value": "444"
+                    },
+                    {
+                      "key": "tax_relation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fb8d0f9-2174-4a8d-978c-1bba649866dd",
+          "name": "Create a support group",
+          "request": {
+            "name": "Create a support group",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6bb48d5-63e8-4042-a1af-92e5a7ba3436",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2009-02-21T02:40:11.478Z\",\n  \"date_gmt\": \"1982-05-26T11:40:38.633Z\",\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 3119,\n  \"link\": \"https://eakvibzojCkxRJUEoxEYBBedHQT.qsaaYe+fD,wS15vQXJ3M+NfvU3bNwlZVqqmYSLenKw8S\",\n  \"modified\": \"2010-04-02T10:47:12.833Z\",\n  \"modified_gmt\": \"1976-10-13T06:49:15.509Z\",\n  \"slug\": \"string\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"parent\": 6581,\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 9181,\n    \"protected\": true\n  },\n  \"excerpt\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"featured_media\": 7708,\n  \"menu_order\": 4675,\n  \"meta\": {\n    \"footnotes\": \"string\"\n  },\n  \"template\": \"string\",\n  \"support_group_categories\": [\n    6598,\n    5306\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5fa7411-b0cf-42e5-b1ec-69588d0ebd0a",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d2fa2cd3-1489-49a2-8198-27ca235dfb87",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3a8a845-570d-4e7b-8d16-b62b8ecf0bfd",
+          "name": "Retrieve a single support group item",
+          "request": {
+            "name": "Retrieve a single support group item",
+            "description": {},
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+                },
+                {
+                  "disabled": false,
+                  "key": "excerpt_length",
+                  "value": "<integer>",
+                  "description": "تجاوز طول المقتطف الافتراضي."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "كلمة مرور المقالة إذا كانت محمية بكلمة مرور."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "694e3e13-1a50-4875-9655-5f663532328c",
+              "name": "The requested item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "excerpt_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2009-02-21T02:40:11.478Z\",\n  \"date_gmt\": \"1982-05-26T11:40:38.633Z\",\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 3119,\n  \"link\": \"https://eakvibzojCkxRJUEoxEYBBedHQT.qsaaYe+fD,wS15vQXJ3M+NfvU3bNwlZVqqmYSLenKw8S\",\n  \"modified\": \"2010-04-02T10:47:12.833Z\",\n  \"modified_gmt\": \"1976-10-13T06:49:15.509Z\",\n  \"slug\": \"string\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"parent\": 6581,\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 9181,\n    \"protected\": true\n  },\n  \"excerpt\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"featured_media\": 7708,\n  \"menu_order\": 4675,\n  \"meta\": {\n    \"footnotes\": \"string\"\n  },\n  \"template\": \"string\",\n  \"support_group_categories\": [\n    6598,\n    5306\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a6ee23c-f002-4c28-97d4-11cbff3f37ec",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "excerpt_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50474eab-b890-430b-8ead-20503bb8a570",
+          "name": "Update a support group item",
+          "request": {
+            "name": "Update a support group item",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0445abb-e06d-4c03-ba48-3f8a5b4540b5",
+              "name": "The updated item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2009-02-21T02:40:11.478Z\",\n  \"date_gmt\": \"1982-05-26T11:40:38.633Z\",\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 3119,\n  \"link\": \"https://eakvibzojCkxRJUEoxEYBBedHQT.qsaaYe+fD,wS15vQXJ3M+NfvU3bNwlZVqqmYSLenKw8S\",\n  \"modified\": \"2010-04-02T10:47:12.833Z\",\n  \"modified_gmt\": \"1976-10-13T06:49:15.509Z\",\n  \"slug\": \"string\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"parent\": 6581,\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 9181,\n    \"protected\": true\n  },\n  \"excerpt\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"featured_media\": 7708,\n  \"menu_order\": 4675,\n  \"meta\": {\n    \"footnotes\": \"string\"\n  },\n  \"template\": \"string\",\n  \"support_group_categories\": [\n    6598,\n    5306\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6949cbd0-20f2-4fd0-a836-a555178580e2",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34dad93c-74a9-4fcf-b76e-595ba31694c8",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af2ff07e-2ba9-44ca-b1be-e59837321159",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"date\": \"<dateTime>\",\n  \"date_gmt\": \"<dateTime>\",\n  \"guid\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"id\": \"<integer>\",\n  \"link\": \"<uri>\",\n  \"modified\": \"<dateTime>\",\n  \"modified_gmt\": \"<dateTime>\",\n  \"slug\": \"<string>\",\n  \"status\": \"<string>\",\n  \"type\": \"<string>\",\n  \"password\": \"<string>\",\n  \"permalink_template\": \"<string>\",\n  \"generated_slug\": \"<string>\",\n  \"class_list\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parent\": \"<integer>\",\n  \"title\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\"\n  },\n  \"content\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"block_version\": \"<integer>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"excerpt\": {\n    \"raw\": \"<string>\",\n    \"rendered\": \"<string>\",\n    \"protected\": \"<boolean>\"\n  },\n  \"featured_media\": \"<integer>\",\n  \"menu_order\": \"<integer>\",\n  \"meta\": {\n    \"footnotes\": \"<string>\"\n  },\n  \"template\": \"<string>\",\n  \"support_group_categories\": [\n    \"<integer>\",\n    \"<integer>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbbb060e-7411-4d5a-b22e-f889495fcf4c",
+          "name": "Delete a support group item",
+          "request": {
+            "name": "Delete a support group item",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "ما إذا كان يجب تخطي سلة المهملات وإجبار الحذف."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8d2d8fd-223f-4c93-8f8b-93b6ac94de5a",
+              "name": "The deleted item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2009-02-21T02:40:11.478Z\",\n  \"date_gmt\": \"1982-05-26T11:40:38.633Z\",\n  \"guid\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"id\": 3119,\n  \"link\": \"https://eakvibzojCkxRJUEoxEYBBedHQT.qsaaYe+fD,wS15vQXJ3M+NfvU3bNwlZVqqmYSLenKw8S\",\n  \"modified\": \"2010-04-02T10:47:12.833Z\",\n  \"modified_gmt\": \"1976-10-13T06:49:15.509Z\",\n  \"slug\": \"string\",\n  \"status\": \"pending\",\n  \"type\": \"string\",\n  \"password\": \"string\",\n  \"permalink_template\": \"string\",\n  \"generated_slug\": \"string\",\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"parent\": 6581,\n  \"title\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"block_version\": 9181,\n    \"protected\": true\n  },\n  \"excerpt\": {\n    \"raw\": \"string\",\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"featured_media\": 7708,\n  \"menu_order\": 4675,\n  \"meta\": {\n    \"footnotes\": \"string\"\n  },\n  \"template\": \"string\",\n  \"support_group_categories\": [\n    6598,\n    5306\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08c93a5d-bd9b-4d67-b383-f06fdec2a617",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "576de421-7fa8-4ba9-8844-ca29e53f2209",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81fb0020-7b21-429b-b7b7-4107af54b01e",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3918afd-c5fc-464f-b5e0-e16fe4004dbb",
+          "name": "List support group categories",
+          "request": {
+            "name": "List support group categories",
+            "description": {
+              "content": "Categories used to classify support groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group_categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+                },
+                {
+                  "disabled": false,
+                  "key": "hide_empty",
+                  "value": "false",
+                  "description": "ما إذا يجب إخفاء العناصر الغير مُسندة لأي مقالة."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "asc",
+                  "description": "خاصية الترتيب إما تصاعدي أو تنازلي."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "name",
+                  "description": "فرز المجموعة حسب خاصية العنصر."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "الصفحة الحالية للمجموعة."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent",
+                  "value": "<integer>",
+                  "description": "حصر النتيجة على عناصر مُسندة لعنصر أب مُعين."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "العدد الأقصى للعناصر ليتم إرجاعه في النتائج."
+                },
+                {
+                  "disabled": false,
+                  "key": "post",
+                  "value": "<integer>",
+                  "description": "حصر النتيجة على عناصر مُسندة لمقالة مُعينة."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "حصر النتائج على مطابقة سلسلة نصية."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "حصر النتائج للفئات مع اسم أو عدة أسماء لطيفة مُعينة."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b74ff2c7-cfe1-4518-b1b7-ce0535794b98",
+              "name": "A page of support group categories.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "hide_empty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "name"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "post",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of matching items.",
+                  "key": "X-WP-Total",
+                  "value": "7734"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages available.",
+                  "key": "X-WP-TotalPages",
+                  "value": "7734"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 4092,\n    \"count\": 7828,\n    \"description\": \"string\",\n    \"link\": \"http://jPiyFxj.tfcrMoQQrIbuRRmQ86q7qjLLDetLziKAVueH\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"taxonomy\": \"support_group_categories\",\n    \"parent\": 7818,\n    \"meta\": {\n      \"key_0\": \"string\"\n    }\n  },\n  {\n    \"id\": 1598,\n    \"count\": 5271,\n    \"description\": \"string\",\n    \"link\": \"http://dcBGCyrCvhOmaRGctTIRdPEvbEyS.mdlfwaL,Yj-fsKAXQxMQBTKa3xSiRimu5hP5E-\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"taxonomy\": \"support_group_categories\",\n    \"parent\": 9090,\n    \"meta\": {\n      \"key_0\": 8340\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8130650-7dd1-4878-97dd-df6cbc1b23cd",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "hide_empty",
+                      "value": "false"
+                    },
+                    {
+                      "key": "order",
+                      "value": "asc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "name"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "post",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7d81a22-257b-4723-a414-de065e1a45f8",
+          "name": "Create a support group categorie",
+          "request": {
+            "name": "Create a support group categorie",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group_categories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": 6442,\n    \"key_1\": 5867.383955488454\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f9b1860-873a-48f3-820e-73bf8c9c7ffa",
+              "name": "Created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8238,\n  \"count\": 6251,\n  \"description\": \"string\",\n  \"link\": \"http://YmxHuXlwiYtynGE.atp1KegoX5u\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"taxonomy\": \"support_group_categories\",\n  \"parent\": 6620,\n  \"meta\": {\n    \"key_0\": 6967.5216479926385,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 7601,\n    \"key_4\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5da3ddf-b6aa-4f71-843b-ddfe3cbad383",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d8488dc-a930-43b7-a3cb-af988e5d0afe",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "261a6736-c47e-4131-8b05-a7c8ed61bc63",
+          "name": "Retrieve a single support group categories item",
+          "request": {
+            "name": "Retrieve a single support group categories item",
+            "description": {},
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group_categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "نطاق الطلب؛ يحدد أي الحقول ستظهر في الرد."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group categories item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51ac75e5-ae35-4088-83c9-fad1b892a56f",
+              "name": "The requested item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8238,\n  \"count\": 6251,\n  \"description\": \"string\",\n  \"link\": \"http://YmxHuXlwiYtynGE.atp1KegoX5u\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"taxonomy\": \"support_group_categories\",\n  \"parent\": 6620,\n  \"meta\": {\n    \"key_0\": 6967.5216479926385,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 7601,\n    \"key_4\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97d8c116-0eda-4ba4-889c-7520ddd11a28",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c33b91fe-1790-4c81-b8ab-fc8a4a75801a",
+          "name": "Update a support group categories item",
+          "request": {
+            "name": "Update a support group categories item",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group_categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group categories item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": 6442,\n    \"key_1\": 5867.383955488454\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc2b0139-4d4a-484c-a3c6-e6a62dfb5b4b",
+              "name": "The updated item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8238,\n  \"count\": 6251,\n  \"description\": \"string\",\n  \"link\": \"http://YmxHuXlwiYtynGE.atp1KegoX5u\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"taxonomy\": \"support_group_categories\",\n  \"parent\": 6620,\n  \"meta\": {\n    \"key_0\": 6967.5216479926385,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 7601,\n    \"key_4\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f2fe417-9350-47b8-a0a8-a5aa56b2c93c",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bab1ebcb-d2c4-489b-9e9d-e94a00106460",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d2eedd4-7824-4ac9-9589-28f9c6b72006",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"description\": \"<string>\",\n  \"link\": \"<uri>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"taxonomy\": \"<string>\",\n  \"parent\": \"<integer>\",\n  \"meta\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5974a9cb-5cb3-483c-b62d-a03c7a16aa7b",
+          "name": "Delete a support group categories item",
+          "request": {
+            "name": "Delete a support group categories item",
+            "description": {
+              "content": "Requires an authenticated WordPress user with sufficient capability.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "support_group_categories",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "force",
+                  "value": "false",
+                  "description": "مطلوب أن تكون true، لأن العناصر لا تدعم النقل لسلة المهملات."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the support group categories item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cdc4f0d9-fb19-4f35-9ab0-fccb03058178",
+              "name": "The deleted item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8238,\n  \"count\": 6251,\n  \"description\": \"string\",\n  \"link\": \"http://YmxHuXlwiYtynGE.atp1KegoX5u\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"taxonomy\": \"support_group_categories\",\n  \"parent\": 6620,\n  \"meta\": {\n    \"key_0\": 6967.5216479926385,\n    \"key_1\": false,\n    \"key_2\": \"string\",\n    \"key_3\": 7601,\n    \"key_4\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6e974bf-23ef-45da-8bb4-6829ff26bc29",
+              "name": "Authentication required (rest_not_logged_in).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f9c2f6e-fc97-474f-862e-03e3f62beecd",
+              "name": "The authenticated user is not allowed to perform this action (rest_forbidden).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e8a44c1-edb4-4be3-9925-fad945469110",
+              "name": "No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "support_group_categories",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "force",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the support group categories item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6217,\n    \"params\": {\n      \"key_0\": \"string\",\n      \"key_1\": 3110\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://labayh.net/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8b39a52-432c-4862-a7b5-1f3e18386afe",
+    "name": "Labayh Content Consultants Support Groups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Labayh (لبيه) publishes its consultant directory, therapeutic programs, support groups, webinars and editorial content through the WordPress REST API mounted at https://labayh.net/wp-json. The collection and item GET operations documented here were verified to respond 200 anonymously; at derivation time the directory exposed 875 consultants across 255 specialty categories, 2,162 blog articles, 33 recorded webinars, 10 therapeutic programs and 12 support groups. Write operations are listed because the server advertises them, but they require an authenticated WordPress user and are not part of a published partner program. This description was derived from the server's own discovery document and per-route OPTIONS schemas — Labayh does not publish an OpenAPI description or a developer portal of its own.\n\nContact Support:\n Name: Labayh",
+      "type": "text/plain"
+    }
+  }
+}
