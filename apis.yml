@@ -87,6 +87,8 @@ apis:
   humanURL: https://labayh.net/wp-json/
   baseURL: https://labayh.net/wp-json
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
