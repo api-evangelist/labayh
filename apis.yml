@@ -181,6 +181,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/labayh-capability-edges.yml
+  name: Labayh Business Capability Map
 - type: Overlay
   url: overlays/labayh-content-overlay.yaml
 - type: Website
