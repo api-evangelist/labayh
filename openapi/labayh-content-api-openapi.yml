@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Labayh Consultants Content API
   version: wp/v2
@@ -311,14 +311,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id001
+            schema:
               $ref: '#/components/schemas/Post'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id001
+              schema:
+                $ref: '#/components/schemas/Post'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -379,14 +380,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id002
+            schema:
               $ref: '#/components/schemas/Post'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id002
+              schema:
+                $ref: '#/components/schemas/Post'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -665,14 +667,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id003
+            schema:
               $ref: '#/components/schemas/Page'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id003
+              schema:
+                $ref: '#/components/schemas/Page'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -733,14 +736,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id004
+            schema:
               $ref: '#/components/schemas/Page'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id004
+              schema:
+                $ref: '#/components/schemas/Page'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -915,14 +919,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id005
+            schema:
               $ref: '#/components/schemas/Category'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id005
+              schema:
+                $ref: '#/components/schemas/Category'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -971,14 +976,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id006
+            schema:
               $ref: '#/components/schemas/Category'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id006
+              schema:
+                $ref: '#/components/schemas/Category'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1153,14 +1159,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id007
+            schema:
               $ref: '#/components/schemas/Tag'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id007
+              schema:
+                $ref: '#/components/schemas/Tag'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1209,14 +1216,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id008
+            schema:
               $ref: '#/components/schemas/Tag'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id008
+              schema:
+                $ref: '#/components/schemas/Tag'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1500,14 +1508,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id009
+            schema:
               $ref: '#/components/schemas/MediaItem'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id009
+              schema:
+                $ref: '#/components/schemas/MediaItem'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1556,14 +1565,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id010
+            schema:
               $ref: '#/components/schemas/MediaItem'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id010
+              schema:
+                $ref: '#/components/schemas/MediaItem'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1799,14 +1809,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id011
+            schema:
               $ref: '#/components/schemas/Comment'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id011
+              schema:
+                $ref: '#/components/schemas/Comment'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -1861,14 +1872,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id012
+            schema:
               $ref: '#/components/schemas/Comment'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id012
+              schema:
+                $ref: '#/components/schemas/Comment'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -2080,14 +2092,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id013
+            schema:
               $ref: '#/components/schemas/User'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id013
+              schema:
+                $ref: '#/components/schemas/User'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -2136,14 +2149,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id014
+            schema:
               $ref: '#/components/schemas/User'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id014
+              schema:
+                $ref: '#/components/schemas/User'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -2184,32 +2198,451 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Forbidden:
-      description: The authenticated user is not allowed to perform this action (rest_forbidden).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameter (rest_invalid_param).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required (rest_not_logged_in).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      title: Error
+      description: The WordPress REST error envelope returned on every 4xx/5xx response.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            params:
+              type: object
+              additionalProperties: true
+              description: Per-parameter validation messages.
+    Post:
+      type: object
+      title: post
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        author:
+          type: integer
+          description: مُعرف كاتب المقالة.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        comment_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت التعليقات مفتوحة على المقالة.
+        ping_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
+        format:
+          type: string
+          enum:
+          - standard
+          - aside
+          - chat
+          - gallery
+          - link
+          - image
+          - quote
+          - status
+          - video
+          - audio
+          description: بنية المقالة.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        sticky:
+          type: boolean
+          description: ما إذا كان يجب معاملة المقالة على أنه مُثبتة.
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
+        categories:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة category.
+          items:
+            type: integer
+        tags:
+          type: array
+          description: العناصر المُسندة للمقالة في الفئة post_tag.
+          items:
+            type: integer
+    Category:
+      type: object
+      title: category
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - category
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+    Comment:
+      type: object
+      title: comment
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للتعليق.
+        author:
+          type: integer
+          description: مُعرف المستخدم، إذا كان الكاتب موجود كمُستخدم.
+        author_email:
+          type: string
+          format: email
+          description: عنوان البريد الإلكتروني لكاتب التعليق.
+        author_ip:
+          type: string
+          format: ip
+          description: عنوان الـ IP لكاتب التعليق.
+        author_name:
+          type: string
+          description: اسم العرض لكاتب التعليق.
+        author_url:
+          type: string
+          format: uri
+          description: رابط URL لكاتب التعليق.
+        author_user_agent:
+          type: string
+          description: وكيل المستخدم (User Agent) لكاتب التعليق.
+        content:
+          type: object
+          description: محتوى التعليق.
+          properties:
+            raw:
+              type: string
+              description: محتوى التعليق، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للتعليق، مُعد للعرض.
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر التعليق، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر التعليق، بتوقيت GMT.
+        link:
+          type: string
+          format: uri
+          description: رابط إلى التعليق.
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للتعليق.
+        post:
+          type: integer
+          description: مُعرف كائن المقالة المرتبطة.
+        status:
+          type: string
+          description: حالة التعليق.
+        type:
+          type: string
+          description: نوع التعليق.
+        author_avatar_urls:
+          type: object
+          description: رابط الصورة الرمزية لكاتب التعليق.
+          properties:
+            '24':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 24 بكسل.
+            '48':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 48 بكسل.
+            '96':
+              type: string
+              format: uri
+              description: رابط صورة رمزية مع صور بحجم 96 بكسل.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            _wp_note_status:
+              type: string
+              enum:
+              - resolved
+              - reopen
+              description: حالة حل الملاحظة
+    Page:
+      type: object
+      title: page
+      properties:
+        date:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت الموقع.
+        date_gmt:
+          type: string
+          format: date-time
+          description: تاريخ نشر المقالة، بتوقيت GMT.
+        guid:
+          type: object
+          description: المُعرف العمومي الفريد للمقالة.
+          properties:
+            raw:
+              type: string
+              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مُعرف (GUID) للمقالة، مُعد للعرض.
+        id:
+          type: integer
+          description: مُعرف فريد للمقالة.
+        link:
+          type: string
+          format: uri
+          description: رابط URL للمقالة.
+        modified:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
+        modified_gmt:
+          type: string
+          format: date-time
+          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
+        status:
+          type: string
+          enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+          - acf-disabled
+          description: حالة مُسماة للمقالة.
+        type:
+          type: string
+          description: نوع المقالة.
+        password:
+          type: string
+          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
+        permalink_template:
+          type: string
+          description: قالب الرابط الدائم للمقالة.
+        generated_slug:
+          type: string
+          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
+        class_list:
+          type: array
+          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
+          items:
+            type: string
+        parent:
+          type: integer
+          description: المعرّف الرئيسي (الأب) للمقالة.
+        title:
+          type: object
+          description: عنوان المقالة.
+          properties:
+            raw:
+              type: string
+              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: عنوان HTML للمقالة، مُعد للعرض.
+        content:
+          type: object
+          description: محتوى المقالة.
+          properties:
+            raw:
+              type: string
+              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: محتوى HTML للمقالة، مُعد للعرض.
+            block_version:
+              type: integer
+              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
+            protected:
+              type: boolean
+              description: ما إذا كان المحتوى محمي بكلمة مرور.
+        author:
+          type: integer
+          description: مُعرف كاتب المقالة.
+        excerpt:
+          type: object
+          description: مقتطف المقالة.
+          properties:
+            raw:
+              type: string
+              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
+            rendered:
+              type: string
+              description: مقتطف HTML للمقالة، مُعد للعرض.
+            protected:
+              type: boolean
+              description: ما إذا كان المقتطف محمي بكلمة مرور.
+        featured_media:
+          type: integer
+          description: مُعرف الوسائط المميزة للمقالة.
+        comment_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت التعليقات مفتوحة على المقالة.
+        ping_status:
+          type: string
+          enum:
+          - open
+          - closed
+          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
+        menu_order:
+          type: integer
+          description: ترتيب المقالة بالعلاقة مع المقالات الأخرى.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          properties:
+            footnotes:
+              type: string
+        template:
+          type: string
+          description: ملف القالب الذي سُيستخدم لعرض المقالة.
     User:
       type: object
       title: user
@@ -2461,450 +2894,6 @@ components:
         exif_orientation:
           type: integer
           description: قيمة اتجاه EXIF. القيم من 1 إلى 8 تتبع مواصفات EXIF، حيث يعني 1 عدم الحاجة إلى التدوير.
-    Error:
-      type: object
-      title: Error
-      description: The WordPress REST error envelope returned on every 4xx/5xx response.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code, e.g. rest_post_invalid_id.
-        message:
-          type: string
-          description: Human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-            params:
-              type: object
-              additionalProperties: true
-              description: Per-parameter validation messages.
-    Comment:
-      type: object
-      title: comment
-      properties:
-        id:
-          type: integer
-          description: مُعرف فريد للتعليق.
-        author:
-          type: integer
-          description: مُعرف المستخدم، إذا كان الكاتب موجود كمُستخدم.
-        author_email:
-          type: string
-          format: email
-          description: عنوان البريد الإلكتروني لكاتب التعليق.
-        author_ip:
-          type: string
-          format: ip
-          description: عنوان الـ IP لكاتب التعليق.
-        author_name:
-          type: string
-          description: اسم العرض لكاتب التعليق.
-        author_url:
-          type: string
-          format: uri
-          description: رابط URL لكاتب التعليق.
-        author_user_agent:
-          type: string
-          description: وكيل المستخدم (User Agent) لكاتب التعليق.
-        content:
-          type: object
-          description: محتوى التعليق.
-          properties:
-            raw:
-              type: string
-              description: محتوى التعليق، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: محتوى HTML للتعليق، مُعد للعرض.
-        date:
-          type: string
-          format: date-time
-          description: تاريخ نشر التعليق، بتوقيت الموقع.
-        date_gmt:
-          type: string
-          format: date-time
-          description: تاريخ نشر التعليق، بتوقيت GMT.
-        link:
-          type: string
-          format: uri
-          description: رابط إلى التعليق.
-        parent:
-          type: integer
-          description: المعرّف الرئيسي (الأب) للتعليق.
-        post:
-          type: integer
-          description: مُعرف كائن المقالة المرتبطة.
-        status:
-          type: string
-          description: حالة التعليق.
-        type:
-          type: string
-          description: نوع التعليق.
-        author_avatar_urls:
-          type: object
-          description: رابط الصورة الرمزية لكاتب التعليق.
-          properties:
-            '24':
-              type: string
-              format: uri
-              description: رابط صورة رمزية مع صور بحجم 24 بكسل.
-            '48':
-              type: string
-              format: uri
-              description: رابط صورة رمزية مع صور بحجم 48 بكسل.
-            '96':
-              type: string
-              format: uri
-              description: رابط صورة رمزية مع صور بحجم 96 بكسل.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          properties:
-            _wp_note_status:
-              type: string
-              enum:
-              - resolved
-              - reopen
-              description: حالة حل الملاحظة
-    Page:
-      type: object
-      title: page
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: تاريخ نشر المقالة، بتوقيت الموقع.
-        date_gmt:
-          type: string
-          format: date-time
-          description: تاريخ نشر المقالة، بتوقيت GMT.
-        guid:
-          type: object
-          description: المُعرف العمومي الفريد للمقالة.
-          properties:
-            raw:
-              type: string
-              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: مُعرف (GUID) للمقالة، مُعد للعرض.
-        id:
-          type: integer
-          description: مُعرف فريد للمقالة.
-        link:
-          type: string
-          format: uri
-          description: رابط URL للمقالة.
-        modified:
-          type: string
-          format: date-time
-          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
-        modified_gmt:
-          type: string
-          format: date-time
-          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
-        status:
-          type: string
-          enum:
-          - publish
-          - future
-          - draft
-          - pending
-          - private
-          - acf-disabled
-          description: حالة مُسماة للمقالة.
-        type:
-          type: string
-          description: نوع المقالة.
-        password:
-          type: string
-          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
-        permalink_template:
-          type: string
-          description: قالب الرابط الدائم للمقالة.
-        generated_slug:
-          type: string
-          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
-        class_list:
-          type: array
-          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
-          items:
-            type: string
-        parent:
-          type: integer
-          description: المعرّف الرئيسي (الأب) للمقالة.
-        title:
-          type: object
-          description: عنوان المقالة.
-          properties:
-            raw:
-              type: string
-              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: عنوان HTML للمقالة، مُعد للعرض.
-        content:
-          type: object
-          description: محتوى المقالة.
-          properties:
-            raw:
-              type: string
-              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: محتوى HTML للمقالة، مُعد للعرض.
-            block_version:
-              type: integer
-              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
-            protected:
-              type: boolean
-              description: ما إذا كان المحتوى محمي بكلمة مرور.
-        author:
-          type: integer
-          description: مُعرف كاتب المقالة.
-        excerpt:
-          type: object
-          description: مقتطف المقالة.
-          properties:
-            raw:
-              type: string
-              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: مقتطف HTML للمقالة، مُعد للعرض.
-            protected:
-              type: boolean
-              description: ما إذا كان المقتطف محمي بكلمة مرور.
-        featured_media:
-          type: integer
-          description: مُعرف الوسائط المميزة للمقالة.
-        comment_status:
-          type: string
-          enum:
-          - open
-          - closed
-          description: ما إذا كانت التعليقات مفتوحة على المقالة.
-        ping_status:
-          type: string
-          enum:
-          - open
-          - closed
-          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
-        menu_order:
-          type: integer
-          description: ترتيب المقالة بالعلاقة مع المقالات الأخرى.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          properties:
-            footnotes:
-              type: string
-        template:
-          type: string
-          description: ملف القالب الذي سُيستخدم لعرض المقالة.
-    Post:
-      type: object
-      title: post
-      properties:
-        date:
-          type: string
-          format: date-time
-          description: تاريخ نشر المقالة، بتوقيت الموقع.
-        date_gmt:
-          type: string
-          format: date-time
-          description: تاريخ نشر المقالة، بتوقيت GMT.
-        guid:
-          type: object
-          description: المُعرف العمومي الفريد للمقالة.
-          properties:
-            raw:
-              type: string
-              description: مُعرف (GUID) للمقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: مُعرف (GUID) للمقالة، مُعد للعرض.
-        id:
-          type: integer
-          description: مُعرف فريد للمقالة.
-        link:
-          type: string
-          format: uri
-          description: رابط URL للمقالة.
-        modified:
-          type: string
-          format: date-time
-          description: تاريخ آخر تعديل للمقالة، بتوقيت الموقع.
-        modified_gmt:
-          type: string
-          format: date-time
-          description: تاريخ آخر تعديل للمقالة، بتوقيت GMT.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي للمقالة فريد من نوعه.
-        status:
-          type: string
-          enum:
-          - publish
-          - future
-          - draft
-          - pending
-          - private
-          - acf-disabled
-          description: حالة مُسماة للمقالة.
-        type:
-          type: string
-          description: نوع المقالة.
-        password:
-          type: string
-          description: كلمة مرور لحماية الوصول للمحتوى والمقتطف.
-        permalink_template:
-          type: string
-          description: قالب الرابط الدائم للمقالة.
-        generated_slug:
-          type: string
-          description: يتم إنشاء الاسم اللطيف تلقائيًا من عنوان المقالة.
-        class_list:
-          type: array
-          description: مجموعة من أسماء الفئات الخاصة بعنصر حاوية التدوينات.
-          items:
-            type: string
-        title:
-          type: object
-          description: عنوان المقالة.
-          properties:
-            raw:
-              type: string
-              description: عنوان للمقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: عنوان HTML للمقالة، مُعد للعرض.
-        content:
-          type: object
-          description: محتوى المقالة.
-          properties:
-            raw:
-              type: string
-              description: محتوى المقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: محتوى HTML للمقالة، مُعد للعرض.
-            block_version:
-              type: integer
-              description: إصدار تنسيق مكوّن المحتوى المُستخدم بواسطة المقالة.
-            protected:
-              type: boolean
-              description: ما إذا كان المحتوى محمي بكلمة مرور.
-        author:
-          type: integer
-          description: مُعرف كاتب المقالة.
-        excerpt:
-          type: object
-          description: مقتطف المقالة.
-          properties:
-            raw:
-              type: string
-              description: مقتطف المقالة، كما هو موجود في قاعدة البيانات.
-            rendered:
-              type: string
-              description: مقتطف HTML للمقالة، مُعد للعرض.
-            protected:
-              type: boolean
-              description: ما إذا كان المقتطف محمي بكلمة مرور.
-        featured_media:
-          type: integer
-          description: مُعرف الوسائط المميزة للمقالة.
-        comment_status:
-          type: string
-          enum:
-          - open
-          - closed
-          description: ما إذا كانت التعليقات مفتوحة على المقالة.
-        ping_status:
-          type: string
-          enum:
-          - open
-          - closed
-          description: ما إذا كانت هناك إمكانية لإرسال التنبيهات للمقالة.
-        format:
-          type: string
-          enum:
-          - standard
-          - aside
-          - chat
-          - gallery
-          - link
-          - image
-          - quote
-          - status
-          - video
-          - audio
-          description: بنية المقالة.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          properties:
-            footnotes:
-              type: string
-        sticky:
-          type: boolean
-          description: ما إذا كان يجب معاملة المقالة على أنه مُثبتة.
-        template:
-          type: string
-          description: ملف القالب الذي سُيستخدم لعرض المقالة.
-        categories:
-          type: array
-          description: العناصر المُسندة للمقالة في الفئة category.
-          items:
-            type: integer
-        tags:
-          type: array
-          description: العناصر المُسندة للمقالة في الفئة post_tag.
-          items:
-            type: integer
-    Category:
-      type: object
-      title: category
-      properties:
-        id:
-          type: integer
-          description: مُعرف فريد للعنصر.
-        count:
-          type: integer
-          description: عدد المقالات المنشورة للعنصر.
-        description:
-          type: string
-          description: وصف (HTML) للعنصر.
-        link:
-          type: string
-          format: uri
-          description: رابط العنصر.
-        name:
-          type: string
-          description: عنوان HTML للعنصر.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
-        taxonomy:
-          type: string
-          enum:
-          - category
-          description: خاصية نوع العنصر.
-        parent:
-          type: integer
-          description: الرقم المُعرف للعنصر الأب.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          additionalProperties: true
     Tag:
       type: object
       title: tag
@@ -2937,6 +2926,31 @@ components:
           type: object
           description: الحقول الإضافية.
           additionalProperties: true
+  responses:
+    NotFound:
+      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user is not allowed to perform this action (rest_forbidden).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required (rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     applicationPassword:
       type: http

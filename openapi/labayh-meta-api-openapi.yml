@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Labayh Content Consultants Meta API
   version: wp/v2
@@ -281,76 +281,28 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SearchResult:
+    Error:
       type: object
-      title: search-result
+      title: Error
+      description: The WordPress REST error envelope returned on every 4xx/5xx response.
       properties:
-        id:
-          type: integer
-          description: المُعرف الفريد للكائن.
-        title:
+        code:
           type: string
-          description: عنوان الكائن.
-        url:
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
           type: string
-          format: uri
-          description: رابط الكائن.
-        type:
-          type: string
-          enum:
-          - post
-          - term
-          - post-format
-          description: نوع الكائن.
-        subtype:
-          type: string
-          enum:
-          - post
-          - page
-          - consultant
-          - program
-          - event
-          - recorded_webinar
-          - support_group
-          - live_webinar
-          - category
-          - post_tag
-          - consultant_categories
-          - program_categories
-          - event_categories
-          - recorded_webinar_categories
-          - support_group_categories
-          - live_webinar_categories
-          description: نوع الكائن الفرعي.
-    ApiIndex:
-      type: object
-      title: API index
-      properties:
-        name:
-          type: string
-          description: Site title.
-        description:
-          type: string
-          description: Site tagline.
-        url:
-          type: string
-          format: uri
-        home:
-          type: string
-          format: uri
-        namespaces:
-          type: array
-          items:
-            type: string
-          description: Registered API namespaces.
-        authentication:
+          description: Human-readable error message.
+        data:
           type: object
-          additionalProperties: true
-          description: Supported authentication methods.
-        routes:
-          type: object
-          additionalProperties: true
-          description: The full route table.
+          description: Additional error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            params:
+              type: object
+              additionalProperties: true
+              description: Per-parameter validation messages.
     ContentType:
       type: object
       title: type
@@ -424,56 +376,6 @@ components:
           - contentOnly
           - false
           description: template_lock المرتبط بنوع المحتوى، أو خطأ في حال عدم وجوده.
-    ContentStatus:
-      type: object
-      title: status
-      properties:
-        name:
-          type: string
-          description: عنوان الحالة.
-        private:
-          type: boolean
-          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون خاصة.
-        protected:
-          type: boolean
-          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون محمية.
-        public:
-          type: boolean
-          description: ما إذا كانت المقالات من هذه الحالة ينبغي أن تظهر في واجهة الموقع.
-        queryable:
-          type: boolean
-          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون عًمومية.
-        show_in_list:
-          type: boolean
-          description: ما إذا كان يجب تضمين المقالات في قائمة التحرير لنفس نوع المقالة.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي للحالة.
-        date_floating:
-          type: boolean
-          description: ما إذا كانت منشورات هذه الحالة قد يكون لها تواريخ منشور مطلقة.
-    Error:
-      type: object
-      title: Error
-      description: The WordPress REST error envelope returned on every 4xx/5xx response.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code, e.g. rest_post_invalid_id.
-        message:
-          type: string
-          description: Human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-            params:
-              type: object
-              additionalProperties: true
-              description: Per-parameter validation messages.
     Taxonomy:
       type: object
       title: taxonomy
@@ -534,6 +436,104 @@ components:
             show_in_quick_edit:
               type: boolean
               description: إمكانية مشاهدة الفئة في لوحة التحرير السريع/المتعدد.
+    SearchResult:
+      type: object
+      title: search-result
+      properties:
+        id:
+          type: integer
+          description: المُعرف الفريد للكائن.
+        title:
+          type: string
+          description: عنوان الكائن.
+        url:
+          type: string
+          format: uri
+          description: رابط الكائن.
+        type:
+          type: string
+          enum:
+          - post
+          - term
+          - post-format
+          description: نوع الكائن.
+        subtype:
+          type: string
+          enum:
+          - post
+          - page
+          - consultant
+          - program
+          - event
+          - recorded_webinar
+          - support_group
+          - live_webinar
+          - category
+          - post_tag
+          - consultant_categories
+          - program_categories
+          - event_categories
+          - recorded_webinar_categories
+          - support_group_categories
+          - live_webinar_categories
+          description: نوع الكائن الفرعي.
+    ContentStatus:
+      type: object
+      title: status
+      properties:
+        name:
+          type: string
+          description: عنوان الحالة.
+        private:
+          type: boolean
+          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون خاصة.
+        protected:
+          type: boolean
+          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون محمية.
+        public:
+          type: boolean
+          description: ما إذا كانت المقالات من هذه الحالة ينبغي أن تظهر في واجهة الموقع.
+        queryable:
+          type: boolean
+          description: ما إذا كانت المقالات مع هذه الحالة ينبغي أن تكون عًمومية.
+        show_in_list:
+          type: boolean
+          description: ما إذا كان يجب تضمين المقالات في قائمة التحرير لنفس نوع المقالة.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي للحالة.
+        date_floating:
+          type: boolean
+          description: ما إذا كانت منشورات هذه الحالة قد يكون لها تواريخ منشور مطلقة.
+    ApiIndex:
+      type: object
+      title: API index
+      properties:
+        name:
+          type: string
+          description: Site title.
+        description:
+          type: string
+          description: Site tagline.
+        url:
+          type: string
+          format: uri
+        home:
+          type: string
+          format: uri
+        namespaces:
+          type: array
+          items:
+            type: string
+          description: Registered API namespaces.
+        authentication:
+          type: object
+          additionalProperties: true
+          description: Supported authentication methods.
+        routes:
+          type: object
+          additionalProperties: true
+          description: The full route table.
   responses:
     NotFound:
       description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Labayh Content Consultants Programs API
   version: wp/v2
@@ -272,14 +272,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id001
+            schema:
               $ref: '#/components/schemas/Program'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id001
+              schema:
+                $ref: '#/components/schemas/Program'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -340,14 +341,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id002
+            schema:
               $ref: '#/components/schemas/Program'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id002
+              schema:
+                $ref: '#/components/schemas/Program'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -521,14 +523,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id003
+            schema:
               $ref: '#/components/schemas/ProgramCategory'
       responses:
         '201':
           description: Created.
           content:
             application/json:
-              schema: *id003
+              schema:
+                $ref: '#/components/schemas/ProgramCategory'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -577,14 +580,15 @@ paths:
       requestBody:
         content:
           application/json:
-            schema: &id004
+            schema:
               $ref: '#/components/schemas/ProgramCategory'
       responses:
         '200':
           description: The updated item.
           content:
             application/json:
-              schema: *id004
+              schema:
+                $ref: '#/components/schemas/ProgramCategory'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
@@ -619,67 +623,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Forbidden:
-      description: The authenticated user is not allowed to perform this action (rest_forbidden).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameter (rest_invalid_param).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required (rest_not_logged_in).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ProgramCategory:
-      type: object
-      title: program_categories
-      properties:
-        id:
-          type: integer
-          description: مُعرف فريد للعنصر.
-        count:
-          type: integer
-          description: عدد المقالات المنشورة للعنصر.
-        description:
-          type: string
-          description: وصف (HTML) للعنصر.
-        link:
-          type: string
-          format: uri
-          description: رابط العنصر.
-        name:
-          type: string
-          description: عنوان HTML للعنصر.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
-        taxonomy:
-          type: string
-          enum:
-          - program_categories
-          description: خاصية نوع العنصر.
-        parent:
-          type: integer
-          description: الرقم المُعرف للعنصر الأب.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          additionalProperties: true
     Error:
       type: object
       title: Error
@@ -831,6 +775,66 @@ components:
           description: العناصر المُسندة للمقالة في الفئة program_categories.
           items:
             type: integer
+    ProgramCategory:
+      type: object
+      title: program_categories
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - program_categories
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
+  responses:
+    NotFound:
+      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user is not allowed to perform this action (rest_forbidden).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required (rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     applicationPassword:
       type: http

@@ -21,6 +21,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "labayh-consultants-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-events-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-meta-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-programs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-support-groups-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "labayh-webinars-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
