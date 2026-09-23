@@ -3,7 +3,7 @@ info:
   title: Labayh Content Consultants API
   version: wp/v2
   summary: Public read access to Labayh's consultant directory, therapeutic programs, support groups, webinars and editorial content.
-  description: Labayh (لبيه) publishes its consultant directory, therapeutic programs, support groups, webinars and editorial content through the WordPress REST API mounted at https://labayh.net/wp-json. The collection and item GET operations documented here were verified to respond 200 anonymously; at derivation time the directory exposed 875 consultants across 255 specialty categories, 2,162 blog articles, 33 recorded webinars, 10 therapeutic programs and 12 support groups. Write operations are listed because the server advertises them, but they require an authenticated WordPress user and are not part of a published partner program. This description was derived from the server's own discovery document and per-route OPTIONS schemas — Labayh does not publish an OpenAPI description or a developer portal of its own.
+  description: Labayh (لبيه) publishes its consultant directory, therapeutic programs, support groups, webinars and editorial content through the WordPress REST API mounted at https://labayh.net/wp-json.
   contact:
     name: Labayh
     url: https://labayh.net/en/contact-us/
@@ -656,64 +656,32 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  responses:
+    BadRequest:
+      description: Invalid parameter (rest_invalid_param).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required (rest_not_logged_in).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: The authenticated user is not allowed to perform this action (rest_forbidden).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      title: Error
-      description: The WordPress REST error envelope returned on every 4xx/5xx response.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error code, e.g. rest_post_invalid_id.
-        message:
-          type: string
-          description: Human-readable error message.
-        data:
-          type: object
-          description: Additional error context.
-          properties:
-            status:
-              type: integer
-              description: The HTTP status code.
-            params:
-              type: object
-              additionalProperties: true
-              description: Per-parameter validation messages.
-    ConsultantCategory:
-      type: object
-      title: consultant_categories
-      properties:
-        id:
-          type: integer
-          description: مُعرف فريد للعنصر.
-        count:
-          type: integer
-          description: عدد المقالات المنشورة للعنصر.
-        description:
-          type: string
-          description: وصف (HTML) للعنصر.
-        link:
-          type: string
-          format: uri
-          description: رابط العنصر.
-        name:
-          type: string
-          description: عنوان HTML للعنصر.
-        slug:
-          type: string
-          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
-        taxonomy:
-          type: string
-          enum:
-          - consultant_categories
-          description: خاصية نوع العنصر.
-        parent:
-          type: integer
-          description: الرقم المُعرف للعنصر الأب.
-        meta:
-          type: object
-          description: الحقول الإضافية.
-          additionalProperties: true
     Consultant:
       type: object
       title: consultant
@@ -843,31 +811,63 @@ components:
           description: العناصر المُسندة للمقالة في الفئة consultant_categories.
           items:
             type: integer
-  responses:
-    NotFound:
-      description: No resource matched the supplied identifier (rest_no_route / rest_post_invalid_id).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid parameter (rest_invalid_param).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: The authenticated user is not allowed to perform this action (rest_forbidden).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required (rest_not_logged_in).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      title: Error
+      description: The WordPress REST error envelope returned on every 4xx/5xx response.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error code, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          description: Additional error context.
+          properties:
+            status:
+              type: integer
+              description: The HTTP status code.
+            params:
+              type: object
+              additionalProperties: true
+              description: Per-parameter validation messages.
+    ConsultantCategory:
+      type: object
+      title: consultant_categories
+      properties:
+        id:
+          type: integer
+          description: مُعرف فريد للعنصر.
+        count:
+          type: integer
+          description: عدد المقالات المنشورة للعنصر.
+        description:
+          type: string
+          description: وصف (HTML) للعنصر.
+        link:
+          type: string
+          format: uri
+          description: رابط العنصر.
+        name:
+          type: string
+          description: عنوان HTML للعنصر.
+        slug:
+          type: string
+          description: مُعرف أبجدي رقمي فريد من نوعه للعنصر.
+        taxonomy:
+          type: string
+          enum:
+          - consultant_categories
+          description: خاصية نوع العنصر.
+        parent:
+          type: integer
+          description: الرقم المُعرف للعنصر الأب.
+        meta:
+          type: object
+          description: الحقول الإضافية.
+          additionalProperties: true
   securitySchemes:
     applicationPassword:
       type: http

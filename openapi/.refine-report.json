@@ -1,13 +1,7 @@
 {
   "provider": "labayh",
   "sources": [
-    "labayh-consultants-api-openapi.yml",
-    "labayh-content-api-openapi.yml",
-    "labayh-events-api-openapi.yml",
-    "labayh-meta-api-openapi.yml",
-    "labayh-programs-api-openapi.yml",
-    "labayh-support-groups-api-openapi.yml",
-    "labayh-webinars-api-openapi.yml"
+    "_ae-authored/labayh-content-openapi.yml"
   ],
   "outputs": [
     "labayh-consultants-api-openapi.yml",
@@ -22,14 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "labayh-consultants-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-events-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-meta-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-programs-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-support-groups-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "labayh-webinars-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "labayh-content-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "labayh-consultants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-content-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-meta-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-programs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-support-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "labayh-webinars-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
