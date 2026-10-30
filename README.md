@@ -64,69 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Labayh (لبيه) is a Saudi Arabian digital mental-health platform delivering online psychological,
-psychiatric and family counselling to the Arabic-speaking Gulf market — scheduled and instant
-sessions with 1,000+ licensed specialists, structured therapeutic programs, peer support groups,
-assessments, mood tracking and webinars. It also runs Labayh Business (corporate wellbeing) and
-Labayh Academy. Backed by 500 Global.
+Labayh (لبيه) is a Saudi Arabian digital mental-health platform delivering online psychological, psychiatric and family counselling to the Arabic-speaking Gulf market. Patients book scheduled or instant video and audio sessions with more than 1,000 licensed specialists, and can also enrol in structured therapeutic programs for depression, anxiety, OCD and social phobia, join peer support groups, take psychological assessments, track mood daily, and watch live and recorded webinars. The company reports over 70 million minutes of consultation delivered. Alongside the consumer app it runs Labayh Business, a corporate employee-wellbeing arm, and Labayh Academy, a training platform for practitioners. Labayh is backed by 500 Global. It operates no developer program and publishes no OpenAPI, SDKs or developer portal; the API catalogued here is the anonymously readable WordPress REST surface behind labayh.net, whose OpenAPI description API Evangelist derived from the server's own discovery document.
 
-- Website: https://labayh.net
-- Status: https://status.labayh.net/
-- Business: https://business.labayh.net/
+**Areas:** Company · Mental Health · Healthcare · Telehealth · Therapy · Wellbeing · Saudi Arabia · Middle East · Arabic
 
-## API surface
+## Labayh on APIs.io
 
-Labayh operates **no developer program** — no developer portal, no published OpenAPI, no SDKs, no
-CLI, no MCP server, no sandbox, no changelog, no `/.well-known/` documents and no security.txt.
+Everything profiled for Labayh is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/labayh/](https://apis.io/providers/labayh/)** — or go straight to one of the APIs or properties below.
 
-What it does operate is a public, anonymously readable WordPress REST API at
-`https://labayh.net/wp-json`. API Evangelist derived an OpenAPI 3.1 description of it from the
-server's own discovery index and per-route OPTIONS schemas — **45 paths, 102 operations, 25
-schemas**. Verified live at capture time:
+### APIs (1)
 
-| Resource | Count |
+- [Labayh Website (WordPress REST)](https://apis.io/apis/labayh/labayh-net-website-wordpress-rest/) — The public WordPress REST API (wp-json) of the Labayh website at labayh.net: the route index of the site's content management system, catalogued as one site…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [labayh](https://apis.io/servers/labayh/labayh/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Labayh Agentic Access](https://apis.io/agentic-access/labayh/labayh-agentic-access/)
+
+#### JSON Schema (5)
+
+The data models the API reads and writes.
+
+- [Moved to /providers/labayh/](https://apis.io/schemas/labayh/labayh-consultant/)
+- [consultant_categories](https://apis.io/schemas/labayh/labayh-consultant-categories/)
+- [program](https://apis.io/schemas/labayh/labayh-program/)
+- [recorded_webinar](https://apis.io/schemas/labayh/labayh-recorded-webinar/)
+- [support_group](https://apis.io/schemas/labayh/labayh-support-group/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-consultants-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-content-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-events-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-meta-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-programs-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-support-groups-api/)
+- [Moved to /providers/labayh/](https://apis.io/collections/labayh/open-labayh-webinars-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Labayh Content Overlay](https://apis.io/overlays/labayh/labayh-content-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Labayh Authentication](https://apis.io/security/labayh/labayh-authentication/)
+- [Labayh Domain Security](https://apis.io/security/labayh/labayh-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://labayh.net)
+- [Support](https://labayh.net/en/contact-us/)
+- [Blog](https://labayh.net/en/blog/)
+- [Terms of service](https://labayh.net/en/terms-conditions/)
+- [Privacy policy](https://labayh.net/en/privacy-policy/)
+- [Status](https://status.labayh.net/)
+
+## API Evangelist rating
+
+**Kin Score 22.2** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| Consultants | 875 |
-| Consultant specialty categories | 255 |
-| Blog articles | 2,162 |
-| Media items | 3,565 |
-| Recorded webinars | 33 |
-| Support groups | 12 |
-| Therapeutic programs | 10 |
+| Discoverability | 64.3 |
+| Contract quality | 1.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 30.4 |
+| Access clarity | 27.6 |
 
-Read operations need no credentials. Writes are advertised but require a WordPress application
-password, and there is no public developer signup — treat the surface as read-only.
+**Agent readiness 8.1** — agent-aware
 
-## Content licensing
-
-`labayh.net/robots.txt` carries a Content-Signal block: `search=yes, ai-train=no, use=reference`,
-disallowing GPTBot, Google-Extended, Applebot-Extended, Amazonbot, Bytespider and
-meta-externalagent, and citing Article 4 of EU Directive 2019/790. Cite this content; do not train
-on it. Captured verbatim as `well-known/labayh-robots.txt`.
-
-## Artifacts
-
-| Directory | What is in it |
+| Agent-readiness dimension | Result |
 |---|---|
-| `openapi/` | Derived OpenAPI 3.1 description of the content API |
-| `json-schema/` | Item schemas for consultant, program, support group, webinar, taxonomy — captured verbatim via OPTIONS |
-| `examples/` | Real captured responses |
-| `overlays/` | API Evangelist provenance and advisory annotations |
-| `conventions/` | Pagination, sparse fields, `_embed`, context, filtering, bilingual behaviour |
-| `errors/` | The WordPress error envelope and observed error codes (not RFC 9457) |
-| `data-model/` | 19 entities, 35 relationships |
-| `authentication/` | Application passwords + `X-WP-Nonce` |
-| `lifecycle/` | Versioning, status page, and the absence of deprecation/SLA/changelog |
-| `conformance/` | Standards the API does and does not meet |
-| `well-known/` | The 404 sweep plus the Content-Signal robots.txt |
-| `security/` | Domain security probe (TLS 1.3; no HSTS, DNSSEC or CAA; DMARC `p=none`) |
-| `agentic-access/` | Recommended `x-agentic-access` contracts for all 102 operations |
-| `mcp/` | Candidate 44-tool read-only MCP shape — Labayh publishes no MCP server |
-| `skills/` | Three packaged Agent Skills over the read surface |
-| `llms/` | llms.txt for the repo |
+| Spec Presence | — |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | yes |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-## Note on safety
+**Regulatory alignment 19.5** — Health
 
-This is a mental-health provider. Anything built on these artifacts should return directory and
-catalogue facts rather than clinical advice, and should escalate any disclosure of crisis or
-self-harm to local emergency services and Labayh's support line (920031893).
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/labayh/](https://apis.io/providers/labayh/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Labayh: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/labayh/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
